@@ -1,18 +1,27 @@
-// Importar la clase Product desde el archivo product.js
 import { Product } from "../classes/product.js"; 
 
 export class ProductService {
   static async loadProducts() {
-    const response = await fetch("../../../data/bicicletas.json");
-    if (!response.ok) throw new Error("Error en la carga de productos");
+    const response = await fetch("../../resources/data/bicicletas.json");
+    if (!response.ok) throw new Error('Error al cargar los productos');
     const data = await response.json();
-    return data.flatMap(cat => 
-      cat.productos.map(p => new Product(
+    return data.map(categoria => ({
+      idModelo: categoria.idModelo,
+      modelo: categoria.modelo,
+      productos: categoria.productos.map(p => new Product(
         p.id, 
         p.marca, 
         p.nombre,
-        p.stock
+        p.colores,
+        p.precio,
+        p.etiquetas,
+        p.paidMethod,
+        p.stock,
+        p.imagen,
+        p.descripcion,
+        categoria.idModelo,
+        categoria.modelo
       ))
-    );
+    }));
   }
 }

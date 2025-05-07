@@ -1,22 +1,18 @@
-// Sistema principal
-import { Product } from './classes/ProductService.js';
 // Importar la clase ProductService desde el archivo productService.js
-import { ProductService } from './classes/ProductService.js';
+import { ProductService } from '../js/classes/ProductService.js';
 // Esperar a que el DOM este completamente cargado antes de ejecutar el codigo
 document.addEventListener('DOMContentLoaded', async () => {
   try {
     // Intenta cargar los datos de los productos desde un archivo JSON con los datos de las bicicletas
     // Se utiliza fetch para obtener los datos de un archivo JSON
     // El archivo JSON contiene un array de objetos, cada uno representando una categoria de productos
-    const response = await fetch('../../resources/data/bicicletas.json');
-    if (!response.ok) throw new Error('Error al cargar los productos'); // Si falla, lanza un error
-    const data = await response.json(); // Convierte la respuesta en un objeto JSON
+    const CandP = await ProductService.loadProducts(); // Carga los productos utilizando la clase ProductService
 
     // Renderiza los productos en la pagina
-    renderProductos(data);
+    renderProductos(CandP);
 
     // Configura los filtros para filtrar los productos
-    setupFilters(data);
+    setupFilters(CandP);
 
   } catch (error) {
     // Si ocurre un error, lo muestra en la consola y en la interfaz
@@ -80,7 +76,7 @@ function renderProductos(categorias) {
   if (!categorias || categorias.length === 0) {
     container.innerHTML = `
       <div class="no-results">
-        <p>No se encontraron productos con los filtros seleccionados.</p>
+        <h1>No se encontraron productos con los filtros seleccionados.</h1>
       </div>
     `;
     return;
@@ -107,34 +103,34 @@ function renderProductos(categorias) {
     // Itera sobre los productos de la categoria
     categoria.productos.forEach(producto => {
       // Obtiene los precios en USD y ARS del producto
-      const precioUSD = producto.precio.find(p => p.moneda === 'USD').precio;
-      const precioARS = producto.precio.find(p => p.moneda === 'ARS').precio;
-      const descuentoUSD = producto.precio.find(p => p.moneda === 'USD').descuento;
-      const descuentoARS = producto.precio.find(p => p.moneda === 'ARS').descuento;
+      const precioUSD = producto.getPrecio('USD'); // Obtiene el precio en USD
+      const precioARS = producto.getPrecio('ARS')
+      const descuentoUSD = producto.getDescuento('USD'); // Obtiene el descuento en USD
+      const descuentoARS = producto.getDescuento('ARS');
       
       // Crea el HTML para cada producto
       const productoHTML = `
-        <div class="producto-card" data-id="${producto.id}">
+        <div class="producto-card" data-id="${producto.getId()}">
           <div class="producto-imagen-container">
-            <img src="..${producto.imagen}" alt="${producto.descripcion}" class="producto-imagen" onerror="this.src='../../resources/imgs/placeholder.jpg'">
-            ${producto.stock > 0 && producto.stock <= 3 ? '<span class="stock-badge">¡ultimas unidades!</span>' : ''} <!-- Muestra un badge si el stock es bajo -->
+            <img src="..${producto.getImgSrc()}" alt="${producto.getDescripcion()}" class="producto-imagen" onerror="this.src='../../resources/imgs/placeholder.jpg'">
+            ${producto.getStock() > 0 && producto.getStock() <= 3 ? '<span class="stock-badge">¡ultimas unidades!</span>' : ''} <!-- Muestra un badge si el stock es bajo -->
           </div>
           <div class="producto-info">
             <!-- Datos del producto -->
-            <p class="producto-marca">${producto.marca}</p>
-            <p class="producto-nombre">${producto.nombre}</p>
-            <p class="producto-descripcion">${producto.descripcion}</p>
+            <p class="producto-marca">${producto.getMarca()}</p>
+            <p class="producto-nombre">${producto.getNombre()}</p>
+            <p class="producto-descripcion">${producto.getDescripcion()}</p>
             
             <!-- Encontrar datos y mostrarlos -->
             <div class="producto-meta">
               <div class="colores">
-                ${producto.colores.map(color => `
-                  <span style="background-color: ${color.codigo}" title="${color.color}"></span>
-                `).join('')}
+              ${producto.getColores().map(color => `
+                <span style="background-color: ${color.codigo};" title="${color.color}"></span>
+              `).join('')}
               </div>
               
               <div class="metodos-pago">
-                ${producto.paidMethod.map(metodo => `
+                ${producto.getPaidMethod().map(metodo => `
                   <span class="metodo-pago ${metodo}">${metodo}</span>
                 `).join('')}
               </div>
@@ -150,11 +146,11 @@ function renderProductos(categorias) {
             
             <!-- Sistema de comprobacion stock -->
             <div class="producto-acciones">
-              <span class="stock ${producto.stock > 0 ? 'en-stock' : 'agotado'}">
-                ${producto.stock > 0 ? '🟢 En stock' : '🔴 Agotado'} <!-- Muestra si el producto esta en stock o agotado -->
+              <span class="stock ${producto.getStock() > 0 ? 'en-stock' : 'agotado'}">
+                ${producto.getStock() > 0 ? '🟢 En stock' : '🔴 Agotado'} <!-- Muestra si el producto esta en stock o agotado -->
               </span>
               <!-- Boton de compra y Envio de datos del objeto-->
-              <button class="btn-comprar" data-id="${producto.id}" data-idmodelo="${categoria.idModelo}">
+              <button class="btn-comprar" data-id="${producto.getId()}" data-idmodelo="${producto.getidModelo()}">
                 COMPRAR 
               </button>
             </div>
