@@ -1,0 +1,47 @@
+/* Reseteo basico para evitar problemas de margenes y paddings */
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+/* Fondo oscuro para el body, estilo minimalista */
+body {
+  background-color: rgba(56, 57, 58, 1);
+}
+
+/* Header con fondo semitransparente y texto centrado */
+header {
+    background-color: rgba(0, 0, 0, 0.2);
+    color: white;
+    padding: 22px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 1rem;
+    min-width: 100vw;
+}
+
+/* Boton para volver, con estilo simple y hover */
+.btn-volver {
+    background-color: rgb(89, 156, 198);
+    color: white;
+    border: none;
+    border-radius: 5px;
+    padding: 6px 1rem;
+    font-size: 1.1rem;
+    white-space: nowrap;
+    text-decoration: none;
+    font-weight: bold;;
+}
+
+.store-navegation {
+    display: flex;
+    align-items: center;
+    gap: 1rem;
+}
+
+/* Cambia el color del boton al pasar el mouse */
+.btn-volver:hover {
+    background-color: rgb(94, 120, 138);
+}

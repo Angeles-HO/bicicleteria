@@ -1,0 +1,91 @@
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+.background {
+  position: fixed;
+  width: 100%;
+  height: 100%;
+  background-image: url('../../resources/imgs/background_1.jpg');
+  background-size: cover;
+  background-position: center;
+  z-index: -1;
+}
+
+header {
+  background-color: rgb(29, 53, 87);
+  color: white;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 1rem;
+}
+
+.encapsular {
+  background: linear-gradient(135deg, rgb(131, 179, 209), rgba(104, 85, 187, 0.785));
+  color:white;
+  border: none;
+  border-radius: 5px;
+  padding: 6px 1rem;
+  font-size: 1.1rem;
+  white-space: nowrap;
+  text-decoration: none;
+  font-weight: bold;
+}
+
+.page-navegation {
+  display: flex;
+  gap: 1rem;
+  align-items: center;
+}
+
+.encapsular:hover {
+  background-color: rgb(94, 120, 138);
+}
+
+body {
+  min-height: 100vh;
+  min-width: 100vw;
+  display: flex;
+  flex-direction: column;
+}
+
+main {
+  font-size: large;
+  flex-grow: 1;
+  display: flex;
+  justify-content: center;
+  align-items: flex-end;
+  padding-bottom: 5rem;
+  background-color: rgba(51, 51, 51, 0.735);
+  color: rgba(255, 255, 255, 0.982);
+  text-shadow: #000000 0px 3px 4px;
+}
+
+.page-info {
+  max-width: 100rem;
+  text-align: center;
+  background-color: rgba(224, 39, 39, 0);
+}
+
+.fuera_del_page_info_principal {
+  text-align: left;
+}
+
+.pageTitulo {
+  font-size: 2.5rem;
+  font-weight: bold;
+  margin-bottom: 1rem;
+}
+
+.testeooo {
+  background-color: rgba(133, 133, 133, 0.461);
+  border: none;
+  border-radius: 10px;
+  padding: 10px 2rem;
+  font-size: 1.3rem;
+  font-weight: bold;
+  max-width: 100%;
+}

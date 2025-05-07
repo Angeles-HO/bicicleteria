@@ -1,0 +1,120 @@
+[
+  {
+    "idModelo": "MTB",
+    "modelo": "Mountain Bike",
+    "productos" : [
+    {
+      "id": 1,
+      "marca": "Overtech",
+      "nombre": "Bicicleta Mtb Overtech Q6 R29 Aluminio, 21v Con Shimano, Freno A Disco, Con Suspension, Color Negro/Azul/Rosa/Blanco, Tamaño Del Cuadro S.",
+      "colores": [
+          { "color": "Negro", "codigo": "#000000" },
+          { "color": "Azul", "codigo": "#0000FF" },
+          { "color": "Rosa", "codigo": "#FF00FF" },
+          { "color": "Blanco", "codigo": "#FFFFFF" }
+      ],
+      "precio" : [
+          { "moneda": "USD", "precio": 500},
+          { "moneda": "ARS", "precio": 650000},
+          { "moneda": "EUR", "precio": 437}
+      ],
+      "etiquetas": ["montaña", "aventura", "ciclismo"],
+      "paidMethod": ["efectivo"],
+      "stock": 0,
+      "imagen": "../../../../resources/imgs/mountain_bike_1.jpg",
+      "descripcion": "Bicicleta de montaña"
+    },
+    {
+      "id": 2,
+      "marca": "Volcano XT",
+      "nombre": "Bicicleta Mtb Volcano XT Pro R29 Carbono, 24v Shimano Deore, Suspensión RockShox, Frenos Hidráulicos",
+      "colores": [
+          { "color": "Rojo", "codigo": "#FF4500" },
+          { "color": "Verde", "codigo": "#228B22" },
+          { "color": "Gris", "codigo": "#36454F" }
+      ],
+      "precio": [
+        { "moneda": "USD", "precio": 1200, "descuento": 12.3},
+        { "moneda": "ARS", "precio": 1560000, "descuento": 16.3},
+        { "moneda": "EUR", "precio": 1050, "descuento": 10.3}
+      ],
+      "etiquetas": ["elite", "competencia", "carbono", "suspensión completa"],
+      "paidMethod": ["tarjeta"],
+      "stock": 10,
+      "imagen": "../../../../resources/imgs/mountain_bike_2.jpg",
+      "descripcion": "Bicicleta de montaña de alta gama"
+    }, 
+    {
+      "id": 3,
+      "marca": "RAAW",
+      "nombre": "Bicicleta Mtb Carbono R29 Shimano XT, 24v",
+      "colores": [
+        {"color": "negro", "codigo": "#000000"},
+        {"color": "blanco", "codigo": "#FFFFFF"},
+        {"color": "gris", "codigo": "#808080"},
+        {"color": "verde", "codigo": "#008000"}
+      ],
+      "precio": [
+        {"moneda": "EUR", "precio": 4844, "descuento": 0.15},
+        {"moneda": "USD", "precio": 2354, "descuento": 5},
+        {"moneda": "ARS", "precio": 2302000, "descuento": 10.3}
+      ],
+      "etiquetas": [
+        "descenso (DH)",
+        "bicicleta de nieve/fat bike",
+        "doble suspension"
+      ],
+      "paidMethod": ["tarjeta"],
+      "stock": 5,
+      "imagen": "../../../../resources/imgs/mountain_bike_2.jpg",
+      "descripcion": "Bicicleton SR Suntour."
+    }
+    ]
+  },
+  {
+    "idModelo": "BMX",
+    "modelo": "BMX Freestyle",
+    "productos" : [
+    {
+      "id": 1,
+      "marca": "Fire Bird",
+      "nombre": "Bicicleta Bmx Fire Bird Freestyle R20 Cuadro Aluminio Color Negro/Plateado",
+      "colores": [
+          { "color": "Negro", "codigo": "#000000" },
+          { "color": "Plateado", "codigo": "#C0C0C0"}
+      ],
+      "precio" : [
+          { "moneda": "USD", "precio": 251},
+          { "moneda": "ARS", "precio": 295850},
+          { "moneda": "EUR", "precio": 220}
+      ],
+      "etiquetas": ["urbano", "competencia", "acrobacias"],
+      "paidMethod": ["tarjeta"],
+      "stock": 11,
+      "imagen": "../../../../Resources/imgs/bicicleta_bmx_1.jpg",
+      "descripcion": "Bicicleta para BMX "
+    },
+    {
+      "id": 2,
+      "marca": "Specialized",
+      "nombre": "Bicicleta Mtb Carbono R29 Shimano XT, 24v",
+      "colores": [
+        {"color": "negro", "codigo": "#000000"},
+        {"color": "gris", "codigo": "#808080"},
+        {"color": "verde", "codigo": "#008000"},
+        {"color": "blanco", "codigo": "#FFFFFF"}
+      ],
+      "precio": [
+        {"moneda": "EUR","precio": 1759},
+        {"moneda": "USD", "precio": 934.56},
+        {"moneda": "ARS","precio": 6184560.0}
+      ],
+      "etiquetas": ["bicicleta de 29 pulgadas", "doble suspension", "montaña", "descenso (DH)"],
+      "paidMethod": ["efectivo"],
+      "stock": 2,
+      "imagen": "../../../../resources/imgs/bsotd.jpg",
+      "descripcion": "Bicicleta para BMX"
+      }
+    ]
+  }
+]

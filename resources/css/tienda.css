@@ -1,0 +1,271 @@
+/* Reseteo basico para evitar problemas de margenes y paddings */
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+/* Fondo oscuro para el body, estilo minimalista */
+body {
+  background-color: rgba(56, 57, 58, 1);
+  margin-bottom: 0;
+}
+
+/* Header con fondo semitransparente y texto centrado */
+header {
+  background-color: rgba(0, 0, 0, 0.2);
+  color: white;
+  display: flex;
+  justify-content: space-between;
+  padding: 22px;
+  text-align: center;
+  width: 100%;
+  
+}
+
+/* Navegacion de la tienda, distribuye elementos a los extremos */
+.store-navegation {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+/* Boton para volver, con estilo simple y hover */
+.btn-volver {
+  font-size: 1.1rem;
+  text-decoration: none;
+  font-weight: bold;
+  color: white;
+  border: none;
+  border-radius: 5px;
+  background: linear-gradient(135deg, rgb(131, 179, 209), rgba(104, 85, 187, 0.785));
+  padding: 6px 1rem;
+}
+
+/* Cambia el color del boton al pasar el mouse */
+.btn-volver:hover {
+  background-color: rgb(94, 120, 138);
+}
+
+/* Contenedor de filtros con bordes redondeados y fondo semitransparente */
+.filtros {
+  display: flexbox;
+  justify-content: space-between;
+  align-items: center;
+  padding: 5px;
+  border: none;
+  border-radius: 8px;
+  margin: 2rem 2rem;
+  max-width: max-content;
+}
+
+.filtro-select {
+  box-shadow: 0px 0px 10px rgba(147, 140, 182, 0.756); /* Sombra para los selectores */
+  background-color: rgba(255, 255, 255, 0.133); /* Fondo semitransparente */
+  border: 1px solid rgb(204, 204, 204); /* Borde claro */
+  transition: transform 0.2s ease-in-out, box-shadow 0.2s ease-in-out; /* Transiciones suaves para hover */
+}
+
+.filtro-select:hover {
+  box-shadow: 0px 0px 10px rgba(255, 255, 255, 0.756); /* Un ligero aumento al pasar el ratón */
+  border-color: rgb(178, 208, 201);
+  transform: translateY(-2px);
+}
+
+/* Estilo para los selectores de filtros */
+select {
+  padding: 8px;
+  border-radius: 5px;
+}
+
+/* Grid para organizar los productos, adaptable al tamaño de pantalla */
+.productos-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
+  gap: 20px;
+  padding: 20px;
+  width: 100%;
+  
+}
+
+/* Tarjeta de producto con fondo degradado y sombra
+*/
+
+.producto-card {
+  background: linear-gradient(135deg, #171a1f, #1d2d37);
+  border-radius: 10px;
+  margin: 1rem;
+  padding: 10px;
+  box-shadow: 0 3px 10px rgba(0, 0, 0, 0.2);
+  transition: transform 0.3s;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  
+}
+
+/* Efecto de hover para la tarjeta, se eleva un poco */
+.producto-card:hover {
+  transform: translateY(-5px);
+  box-shadow: 0px 0px 10px 5px rgb(147, 142, 173);
+}
+
+/* Imagen del producto, ocupa todo el ancho y tiene bordes redondeados */
+.producto-card img {
+  width: 100%;
+  border-radius: 8px;
+  height: 200px;
+  object-fit: cover;
+}
+
+/* Circulos de colores para mostrar opciones de color */
+.colores span {
+  display: inline-block;
+  width: 20px;
+  height: 20px;
+  border-radius: 50%;
+  margin-right: 5px;
+  border: 1px solid rgb(221, 221, 221);
+}
+
+/* Marca del producto, centrada y en negrita */
+.producto-marca {
+  color: rgb(255, 255, 255);
+  font-weight: bold;
+  width: 100%;
+  text-align: center;
+  padding: 5px 10px;
+}
+
+/* Badge para mostrar el stock, con colores llamativos */
+.stock-badge {
+  background-color: rgb(29, 53, 87);
+  color: rgb(200, 56, 56);
+  padding: 5px 10px;
+  border-radius: 5px;
+  font-size: 0.9rem;
+  display: flex;
+  text-align: center;
+  justify-content: center;
+  padding: 1vh 0;
+}
+
+/* Nombre del producto, con margen y color claro */
+.producto-nombre {
+  color: #d4d4d4;
+  font-weight: bold;
+  text-align: left;
+  margin: 1rem 0;
+  max-width: 300px;
+  max-height: 10vh;
+  flex-grow: 1;
+  font-size: calc(1rem + 10vw * 0.01);
+}
+
+/* Descripcion del producto, con estilo mas tenue */
+.producto-descripcion {
+  color: rgb(159, 159, 159);
+  font-size: 1em;
+  text-align: left;
+  margin: 1rem 0;
+  
+}
+
+/* Metodos de pago, con fondo llamativo y distribucion horizontal */
+.metodos-pago {
+  background-color: aquamarine;
+  display: flex;
+  justify-content: space-between;
+  margin: 1rem 0;
+  border: none;
+  border-radius: 5px;
+  padding: 0.5rem 1rem;
+  width: 5rem;
+}
+
+/* Precios del producto, centrados y con margen */
+.producto-precios {
+  color: #ffffff;
+  margin: 1rem 0;
+  color: rgb(255, 255, 255);
+  font-size: 1.2rem;
+  margin: 1rem 0;
+}
+
+.descuento {
+  color: rgb(119, 238, 40);
+  padding: 5px 10px;
+  font-size: 0.9rem;
+  padding: 1vh 0;
+  text-align: center;
+}
+
+
+/* Contenedor para el stock, con fondo degradado */
+.stock {
+  background: linear-gradient(135deg, #1d2d37, #171a1f);
+  color: #ffffff;
+  display: flex;
+  justify-content: space-between;
+  margin: 1rem 0;
+  border: none;
+  border-radius: 5px;
+  padding: 0.5rem 1rem;
+  width: 8rem;
+  
+}
+
+/* Boton para comprar, con transicion de color */
+.btn-comprar {
+  align-items: center;
+  background: #1d3557;
+  color: white;
+  border: none;
+  border-radius: 5px;
+  padding: 10px 0;
+  width: 100%;
+  cursor: pointer;
+  transition: background 0.3s;
+  
+}
+
+/* Cambia el color del boton al pasar el mouse */
+.btn-comprar:hover {
+  background: rgb(69, 123, 157);
+}
+
+.productos {
+  background-color: rgba(0, 0, 0, 0.2);
+  padding: 5px;
+  max-width: 100%;
+  margin: 2rem 2rem;
+  border: none;
+  border-radius: 8px;
+}
+
+.producto-info {
+  flex-grow: 1; /* Permite que la información ocupe el espacio restante */
+  display: flex;
+  flex-direction: column;
+  /* Ya no usamos space-between aquí para evitar que la marca se separe */
+}
+.producto-acciones {
+  /* Tus estilos actuales */
+  margin-top: auto; /* Empuja hacia la parte inferior */
+}
+
+#btn-filtrar {
+  color: white;
+  border: none;
+  border-radius: 5px;
+  background: linear-gradient(135deg, rgb(131, 179, 209), rgba(104, 85, 187, 0.785));
+  padding: 10px 0;
+  width: 5vw;
+  cursor: pointer;
+  transition: transform 0.2s ease-in-out, box-shadow 0.2s ease-in-out; /* Transiciones suaves para hover */
+  
+}
+
+#btn-filtrar:hover {
+  transform: translateY(-2px);
+}
