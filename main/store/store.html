@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Tienda de Bicicletas</title>
+  <script src="../../resources/js/tienda.js"></script>
+  <link rel="stylesheet" href="../../resources/css/tienda.css">
+</head>
+<body>
+  <header>
+    <br>
+    <h1>Bicicleteria del Futuro</h1>
+    <div class="store-navegation">
+      <a href="../home/index.html" class="btn-volver">Inicio</a>
+    </div>
+  </header>
+
+  <main>
+    <div class="filtros">
+      <select id="filtro-modelo" class="filtro-select">
+        <option value="todos">Todos los modelos</option>
+        <option value="MTB">Mountain Bike</option>
+        <option value="BMX">BMX Freestyle</option>
+      </select>
+      <select id="method-paid-container" class="filtro-select">
+        <option value="todos">Todos los metodos de pago</option>
+        <option value="efectivo">Efectivo</option>
+        <option value="tarjeta">Tarjeta de crédito</option>
+        <option value="transferencia">Transferencia bancaria</option>
+      </select>
+    </div>
+    
+    <div class="productos">
+      <div class="productos-container" id="productos-container">
+      </div>
+    </div>
+  </main>
+</body>
+</html>
