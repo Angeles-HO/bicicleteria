@@ -8,15 +8,15 @@
       "marca": "Overtech",
       "nombre": "Bicicleta Mtb Overtech Q6 R29 Aluminio, 21v Con Shimano, Freno A Disco, Con Suspension, Color Negro/Azul/Rosa/Blanco, Tamaño Del Cuadro S.",
       "colores": [
-          { "color": "Negro", "codigo": "#000000" },
-          { "color": "Azul", "codigo": "#0000FF" },
-          { "color": "Rosa", "codigo": "#FF00FF" },
-          { "color": "Blanco", "codigo": "#FFFFFF" }
+        { "color": "Negro", "codigo": "#000000" },
+        { "color": "Azul", "codigo": "#0000FF" },
+        { "color": "Rosa", "codigo": "#FF00FF" },
+        { "color": "Blanco", "codigo": "#FFFFFF" }
       ],
       "precio" : [
-          { "moneda": "USD", "precio": 500},
-          { "moneda": "ARS", "precio": 650000},
-          { "moneda": "EUR", "precio": 437}
+        { "moneda": "USD", "precio": 500},
+        { "moneda": "ARS", "precio": 650000},
+        { "moneda": "EUR", "precio": 437}
       ],
       "etiquetas": ["montaña", "aventura", "ciclismo"],
       "paidMethod": ["efectivo"],
@@ -29,9 +29,9 @@
       "marca": "Volcano XT",
       "nombre": "Bicicleta Mtb Volcano XT Pro R29 Carbono, 24v Shimano Deore, Suspensión RockShox, Frenos Hidráulicos",
       "colores": [
-          { "color": "Rojo", "codigo": "#FF4500" },
-          { "color": "Verde", "codigo": "#228B22" },
-          { "color": "Gris", "codigo": "#36454F" }
+        { "color": "Rojo", "codigo": "#FF4500" },
+        { "color": "Verde", "codigo": "#228B22" },
+        { "color": "Gris", "codigo": "#36454F" }
       ],
       "precio": [
         { "moneda": "USD", "precio": 1200, "descuento": 12.3},

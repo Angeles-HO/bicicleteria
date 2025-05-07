@@ -1,4 +1,7 @@
 // Sistema principal
+import { Product } from './classes/ProductService.js';
+// Importar la clase ProductService desde el archivo productService.js
+import { ProductService } from './classes/ProductService.js';
 // Esperar a que el DOM este completamente cargado antes de ejecutar el codigo
 document.addEventListener('DOMContentLoaded', async () => {
   try {
