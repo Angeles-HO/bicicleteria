@@ -25,10 +25,6 @@ export class Product {
     get imagen() { return this._imagen; }
     get descripcion() { return this._descripcion}
   
-    thisColor(color) {
-      return this._colores.find(c => c.color === color) || error("Color no encontrado o no disponible");
-    }
-
     getId(){
         return this.id;
     }
@@ -77,4 +73,14 @@ export class Product {
         return this._modelo;
     }
 
+    getCalcularDescuento(moneda) {
+        // mejora de busqueda y devolucion si se encuentra el elemento descuento
+        const ifDiscount = this.getDescuento(moneda);
+        const ifPrecio = this.getPrecio(moneda);
+        if (!ifPrecio || !ifDiscount) {
+            return 0;
+        }
+        const total = ifPrecio * (1 - ifDiscount/100);
+        return Math.max(total, 0);
+    }
 }

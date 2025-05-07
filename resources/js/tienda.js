@@ -27,45 +27,72 @@ document.addEventListener('DOMContentLoaded', async () => {
 
 // Configura los filtros para filtrar los productos segun el modelo y el metodo de pago
 function setupFilters(data) {
-  const filtroModelo = document.getElementById('filtro-modelo'); // Selector para filtrar por modelo en el html
+  // Obtiene los elementos del DOM para los filtros de modelo y metodo de pago
+  const filtroModelo = document.getElementById('filtro-modelo'); // Selector para filtrar por modelo
   const filtroPago = document.getElementById('method-paid-container'); // Selector para filtrar por metodo de pago
-  
+
+  // Verifica si el filtro de modelo ya tiene opciones cargadas
+  if (filtroModelo.innerHTML === '') {
+    // Extrae los modelos unicos de las categorias en los datos
+    // Crear un array con valores unicos de idModelo
+    const modelosUnicos = [...new Set(data.map(cat => cat.idModelo))];
+    modelosUnicos.forEach(modelo => {
+      // Agrega cada modelo como una opcion en el filtro de modelo
+      filtroModelo.innerHTML += `<option value="${modelo}">${modelo}</option>`;
+    });
+  }
+
+  // Verifica si el filtro de metodo de pago ya tiene opciones cargadas
+  if (filtroPago.innerHTML === '') {
+    const metodosPago = new Set(); // Crea un conjunto para almacenar metodos de pago unicos
+    data.forEach(cat => {
+      // Itera sobre cada categoria y sus productos
+      cat.productos.forEach(prod => {
+        // Agrega cada metodo de pago del producto al conjunto
+        prod.paidMethod.forEach(m => metodosPago.add(m));
+      });
+    });
+    metodosPago.forEach(metodo => {
+      // Agrega cada metodo de pago como una opcion en el filtro de metodo de pago
+      filtroPago.innerHTML += `<option value="${metodo}">${metodo}</option>`;
+    });
+  }
+
   // Funcion que maneja los cambios en los filtros
   const handleFilterChange = () => {
     // Obtiene los valores seleccionados en los filtros
-    const modeloSeleccionado = filtroModelo.value;
-    const metodoPagoSeleccionado = filtroPago.value;
-  
-    // Crear una copia profunda de los datos originales para evitar mutaciones
-    // Se utiliza JSON.parse y JSON.stringify para crear una copia profunda del objeto
-    // Esto es necesario para evitar que los cambios en los filtros afecten a los datos originales
-    // JSON.parse convierte el objeto en una cadena JSON y luego JSON.stringify lo convierte de nuevo en un objeto
-    const datosFiltrados = JSON.parse(JSON.stringify(data));
+    const modeloSeleccionado = filtroModelo.value; // Valor seleccionado en el filtro de modelo
+    const metodoPagoSeleccionado = filtroPago.value; // Valor seleccionado en el filtro de metodo de pago
 
-    // Sistema de filtrado
-    const productosFiltrados = datosFiltrados.filter(categoria => {
-
-      // Filtrar por modelo
-      if (modeloSeleccionado !== 'todos' && categoria.idModelo !== modeloSeleccionado) {
-        return false;
-      }
-      
-      // Filtrar por metodo de pago
+    // Filtra las categorias y sus productos segun los filtros seleccionados
+    const productosFiltrados = data.map(categoria => {
+      // Filtra los productos de la categoria por metodo de pago si se selecciono uno especifico
+      let productos = categoria.productos;
       if (metodoPagoSeleccionado !== 'todos') {
-        categoria.productos = categoria.productos.filter(producto => 
-          producto.paidMethod.includes(metodoPagoSeleccionado)
+        productos = productos.filter(producto => 
+          producto.paidMethod.includes(metodoPagoSeleccionado) // Incluye solo los productos que soportan el metodo de pago seleccionado
         );
       }
-        
-      return categoria.productos.length > 0; // caterogiria con productos restantes o mayor a 0 
-    });
-    
+
+      // Verifica si la categoria debe incluirse segun el modelo seleccionado
+      if (modeloSeleccionado !== 'todos' && categoria.idModelo !== modeloSeleccionado) {
+        return null; // Excluye esta categoria si no coincide con el modelo seleccionado
+      }
+
+      // Devuelve una copia de la categoria con los productos filtrados
+      return {
+        ...categoria, // Copia las propiedades de la categoria original
+        productos: productos // Incluye solo los productos filtrados
+      };
+    }).filter(categoria => categoria !== null && categoria.productos.length > 0); // Excluye categorias vacias o nulas
+
+    // Renderiza los productos filtrados en la pagina
     renderProductos(productosFiltrados);
   };
-  
-  // Agrega eventos a los selectores para que ejecuten el filtro al cambiar
-  filtroModelo.addEventListener('change', handleFilterChange);
-  filtroPago.addEventListener('change', handleFilterChange);
+
+  // Agrega eventos de cambio a los filtros para ejecutar la funcion de filtrado
+  filtroModelo.addEventListener('change', handleFilterChange); // Ejecuta el filtrado al cambiar el modelo
+  filtroPago.addEventListener('change', handleFilterChange); // Ejecuta el filtrado al cambiar el metodo de pago
 }
 
 // Renderiza los productos en la pagina
@@ -104,15 +131,17 @@ function renderProductos(categorias) {
     categoria.productos.forEach(producto => {
       // Obtiene los precios en USD y ARS del producto
       const precioUSD = producto.getPrecio('USD'); // Obtiene el precio en USD
-      const precioARS = producto.getPrecio('ARS')
+      const precioARS = producto.getPrecio('ARS'); // Obtiene el precio en ARS
       const descuentoUSD = producto.getDescuento('USD'); // Obtiene el descuento en USD
-      const descuentoARS = producto.getDescuento('ARS');
+      const descuentoARS = producto.getDescuento('ARS'); // Obtiene el descuento en ARS
+      const precioDescuentoARS = producto.getCalcularDescuento('ARS');
+      const precioDescuentoUSD = producto.getCalcularDescuento('USD');
       
       // Crea el HTML para cada producto
       const productoHTML = `
         <div class="producto-card" data-id="${producto.getId()}">
           <div class="producto-imagen-container">
-            <img src="..${producto.getImgSrc()}" alt="${producto.getDescripcion()}" class="producto-imagen" onerror="this.src='../../resources/imgs/placeholder.jpg'">
+            <img src="..${producto.getImgSrc()}" alt="${producto.getDescripcion()}" class="producto-imagen" onerror="this.src='../../resources/imgs/bsotd.jpg'">
             ${producto.getStock() > 0 && producto.getStock() <= 3 ? '<span class="stock-badge">¡ultimas unidades!</span>' : ''} <!-- Muestra un badge si el stock es bajo -->
           </div>
           <div class="producto-info">
@@ -142,6 +171,8 @@ function renderProductos(categorias) {
               <br>
               <span class="precio-ars">ARS $${precioARS.toLocaleString('es-AR')}</span> <!-- Precio en pesos -->
               ${descuentoARS ? `<span class="descuento">-${descuentoARS}%</span>` : ''} <!-- Muestra el descuento si existe -->
+                  <br>
+              ${precioDescuentoARS ? `<span class="precio-ars-descuento">precio con descuento:<br> ARS $${precioDescuentoARS}</span>` : ''}
             </div>
             
             <!-- Sistema de comprobacion stock -->
@@ -178,11 +209,11 @@ function setupBuyButtons() {
     btn.addEventListener('click', (e) => {
       e.preventDefault(); // Evita el comportamiento predeterminado del boton
       const productId = e.target.dataset.id; // Obtiene el ID del producto desde el atributo data-id
-      const teeeeeest55555 = e.target.dataset.idmodelo; // Obtiene el ID del modelo desde el atributo data-idmodelo
+      const productModelo = e.target.dataset.idmodelo; // Obtiene el ID del modelo desde el atributo data-idmodelo
 
       // Guarda el ID del producto seleccionado en el localStorage
       localStorage.setItem('selectedProductId', productId);
-      localStorage.setItem('selectedTest55', teeeeeest55555); // Guarda el ID del modelo en el localStorage
+      localStorage.setItem('selectedProductModelo ', productModelo); // Guarda el ID del modelo en el localStorage
 
       // Redirige al usuario a la pagina de compra
       window.location.href = '../../main/comprar/comprar.html';

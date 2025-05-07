@@ -36,7 +36,7 @@
       "precio": [
         { "moneda": "USD", "precio": 1200, "descuento": 12.3},
         { "moneda": "ARS", "precio": 1560000, "descuento": 16.3},
-        { "moneda": "EUR", "precio": 1050, "descuento": 10.3}
+        { "moneda": "EUR", "precio": 1050, "descuento": 10.9}
       ],
       "etiquetas": ["elite", "competencia", "carbono", "suspensión completa"],
       "paidMethod": ["tarjeta"],
@@ -112,7 +112,7 @@
       "etiquetas": ["bicicleta de 29 pulgadas", "doble suspension", "montaña", "descenso (DH)"],
       "paidMethod": ["efectivo"],
       "stock": 2,
-      "imagen": "../../../../resources/imgs/bsotd.jpg",
+      "imagen": "../../../../resources/imgs/bici.js",
       "descripcion": "Bicicleta para BMX"
       }
     ]
