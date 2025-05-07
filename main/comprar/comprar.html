@@ -26,23 +26,20 @@
 
   <script>
     document.addEventListener('DOMContentLoaded', () => {
-      const productId = localStorage.getItem('selectedProductId')
-      const test55 = localStorage.getItem('selectedProductModelo');
-      const compraContainer = document.getElementById('compra-container');
-      
-      if(productId && test55) {
-        compraContainer.innerHTML = `
-          <div class="compra-detalle">
-            <h2>Compra del producto ID: ${productId} del modelo ${test55}</h2>
-            <form class="formulario-pago">
-
-            </form>
-          </div>
-        `;
-      } else {
-        compraContainer.innerHTML = '<p>No se ha seleccionado ningún producto</p>';
-      }
-    });
+  const productId = localStorage.getItem('selectedProductId');
+  const productModelo = localStorage.getItem('selectedProductModelo');
+  const compraContainer = document.getElementById('compra-container');
+  
+  if (productId && productModelo) {
+    compraContainer.innerHTML = `
+      <div class="compra-detalle">
+        <h2>Compra del producto ID: ${productId} del modelo ${productModelo}</h2>
+      </div>
+    `;
+  } else {
+    compraContainer.innerHTML = '<p>No se ha seleccionado ningún producto</p>';
+  }
+});
   </script>
 </body>
 </html>

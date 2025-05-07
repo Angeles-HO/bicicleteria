@@ -1,5 +1,6 @@
 // Importar la clase ProductService desde el archivo productService.js
 import { ProductService } from '../js/classes/ProductService.js';
+import { Product } from '../js/classes/product.js';
 // Esperar a que el DOM este completamente cargado antes de ejecutar el codigo
 document.addEventListener('DOMContentLoaded', async () => {
   try {
@@ -172,7 +173,7 @@ function renderProductos(categorias) {
               <span class="precio-ars">ARS $${precioARS.toLocaleString('es-AR')}</span> <!-- Precio en pesos -->
               ${descuentoARS ? `<span class="descuento">-${descuentoARS}%</span>` : ''} <!-- Muestra el descuento si existe -->
                   <br>
-              ${precioDescuentoARS ? `<span class="precio-ars-descuento">precio con descuento:<br> ARS $${precioDescuentoARS}</span>` : ''}
+              ${precioDescuentoARS ? `<span class="precio-ars-descuento">precio con descuento:<br> ARS $${precioDescuentoARS.toLocaleString('es-AR')}</span>` : ''}
             </div>
             
             <!-- Sistema de comprobacion stock -->
@@ -180,8 +181,9 @@ function renderProductos(categorias) {
               <span class="stock ${producto.getStock() > 0 ? 'en-stock' : 'agotado'}">
                 ${producto.getStock() > 0 ? '🟢 En stock' : '🔴 Agotado'} <!-- Muestra si el producto esta en stock o agotado -->
               </span>
-              <!-- Boton de compra y Envio de datos del objeto-->
-              <button class="btn-comprar" data-id="${producto.getId()}" data-idmodelo="${producto.getidModelo()}">
+
+              <!-- Fix de envio de datos -->
+              <button class="btn-comprar" data-id="${producto.getId()}" data-idmodelo="${producto.getIdModelo()}">
                 COMPRAR 
               </button>
             </div>
@@ -204,18 +206,23 @@ function renderProductos(categorias) {
 
 // Configura los eventos de los botones de compra
 function setupBuyButtons() {
-  // Selecciona todos los botones de compra
   document.querySelectorAll('.btn-comprar').forEach(btn => {
     btn.addEventListener('click', (e) => {
-      e.preventDefault(); // Evita el comportamiento predeterminado del boton
-      const productId = e.target.dataset.id; // Obtiene el ID del producto desde el atributo data-id
-      const productModelo = e.target.dataset.idmodelo; // Obtiene el ID del modelo desde el atributo data-idmodelo
+      e.preventDefault();
+      const productId = e.target.dataset.id; // Obtiene el ID del producto
+      const productModelo = e.target.dataset.idmodelo; // Obtiene el ID del modelo
+      console.log('Product ID:', productId);
+      console.log('Product Modelo:', productModelo);
 
-      // Guarda el ID del producto seleccionado en el localStorage
+      if (!productModelo) {
+        console.error('El atributo data-idModelo no está definido en el botón.');
+      }
+
+      // Guarda los datos en localStorage
       localStorage.setItem('selectedProductId', productId);
-      localStorage.setItem('selectedProductModelo ', productModelo); // Guarda el ID del modelo en el localStorage
+      localStorage.setItem('selectedProductModelo', productModelo);
 
-      // Redirige al usuario a la pagina de compra
+      // Redirige a la página de compra
       window.location.href = '../../main/comprar/comprar.html';
     });
   });

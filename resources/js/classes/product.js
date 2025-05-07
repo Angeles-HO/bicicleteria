@@ -26,7 +26,7 @@ export class Product {
     get descripcion() { return this._descripcion}
   
     getId(){
-        return this.id;
+        return this._id;
     }
 
     getMarca() {
@@ -65,7 +65,7 @@ export class Product {
         return this._descripcion;
     }
 
-    getidModelo() {
+    getIdModelo() {
         return this._idModelo;
     }
 
