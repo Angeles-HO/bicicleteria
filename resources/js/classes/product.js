@@ -3,7 +3,7 @@ export class Product {
       this._id = id;
       this._marca = marca;
       this._nombre = nombre;
-      this._colores = colores; // Array de objetos { color: 'color', codigo: '#fff' }
+      this._colores = colores;
       this._precio = precio;
       this._etiquetas = etiquetas;
       this._paidMethod = paidMethod;
@@ -74,7 +74,7 @@ export class Product {
     }
 
     getModelo() {
-        return this.modelo;
+        return this._modelo;
     }
 
 }
