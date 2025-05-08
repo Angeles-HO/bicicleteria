@@ -12,33 +12,33 @@ body {
 
 /* Header con fondo semitransparente y texto centrado */
 header {
-    background-color: rgba(0, 0, 0, 0.2);
-    color: white;
-    padding: 22px;
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
-    padding: 1rem;
-    min-width: 100vw;
+  background-color: rgba(0, 0, 0, 0.2);
+  color: white;
+  padding: 22px;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 1rem;
+  max-width: 100%;
 }
 
 /* Boton para volver, con estilo simple y hover */
 .btn-volver {
-    background-color: rgb(89, 156, 198);
-    color: white;
-    border: none;
-    border-radius: 5px;
-    padding: 6px 1rem;
-    font-size: 1.1rem;
-    white-space: nowrap;
-    text-decoration: none;
-    font-weight: bold;;
+  background-color: rgb(89, 156, 198);
+  color: white;
+  border: none;
+  border-radius: 5px;
+  padding: 6px 1rem;
+  font-size: 1.1rem;
+  white-space: nowrap;
+  text-decoration: none;
+  font-weight: bold;;
 }
 
 .store-navegation {
-    display: flex;
-    align-items: center;
-    gap: 1rem;
+  display: flex;
+  align-items: center;
+  gap: 1rem;
 }
 
 /* Cambia el color del boton al pasar el mouse */
@@ -47,5 +47,56 @@ header {
 }
 
 .compra-detalle {
-  background-color: aqua;
+  background-color: rgba(2, 2, 2, 0.26);
+  color: #fff;
+  margin: 2rem;
+  border: none;
+  border-radius: 5px;
+  display: flex;
+  max-width: max-content;
+  gap: 1vw;
+  justify-self:center;
+}
+
+.producto-detalles {
+  background-color: rgba(2, 2, 2, 0.26);
+  border: none;
+  border-radius: 5px;
+  width: 30vw;
+  margin: 1rem;
+  padding: 1rem;
+}
+
+.finalizar-compra {
+  background-color: rgba(2, 2, 2, 0.26);
+  border: none;
+  border-radius: 5px;
+  width: 25vw;
+  margin: 1rem;
+  padding: 1rem;
+}
+
+.product-img {
+  width: 100%;
+  max-height: 400px;
+  height: auto;
+  object-fit: contain;
+  border-radius: 6px;
+  box-shadow: 0 4px 12px rgba(184, 169, 169, 0.2);
+  margin-bottom: 1rem;
+}
+
+.mas-detalles {
+  background-color: rgba(100, 83, 103, 0.173);
+  padding: 1rem 1rem;
+  font-weight: 500;
+  border: none;
+  border-radius: 10px;
+  margin-top: 1rem;
+}
+
+
+
+.lista-precio {
+  margin: 1% 1rem;
 }

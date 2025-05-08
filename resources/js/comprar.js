@@ -20,13 +20,26 @@ document.addEventListener('DOMContentLoaded', async () => {
         if (findPrdct) {
             compraContainer.innerHTML = `
                 <div class="compra-detalle">
-                    <h2>Detalles de la Compra</h2>
-                    <p>producto id: ${findPrdct.getId()}</p>
-                    <p>producto modelo: ${findPrdct.getModelo()}</p>
-                    <p>producto marca: ${findPrdct.getMarca()}</p>
-                    <p>producto nombre: ${findPrdct.getNombre()}</p>
-                    <p>producto paid method: ${findPrdct.getPaidMethod()}</p>
-                    <p>producto stocks disponibles: ${findPrdct.getStock()}</p>
+                    <div class="producto-detalles">
+                        <img class="product-img" src="${findPrdct.getImgSrc()}">
+                        <h2>Detalles de la Compra</h2>
+                        <div class="mas-detalles">
+                            <p class="otros-detalles">Producto a Comprar: ${findPrdct.getNombre()}</p>
+                            <p class="otros-detalles">Modelo: ${findPrdct.getModelo()}</p>
+                            <p class="otros-detalles">Marca: ${findPrdct.getMarca()}</p>
+                            <ul class="otros-detalles>Precio: 
+                                <li class="lista-precio">ARS: $${findPrdct.getPrecio('ARS').toLocaleString('es-AR')}</li>
+                                <li class="lista-precio">USD: $${findPrdct.getPrecio('USD')}</li>
+                                <li class="lista-precio">EUR: $${findPrdct.getPrecio('EUR')}</li>
+                            </ul>
+                            <p class="otros-detalles>Metodos de Pago para este producto : ${findPrdct.getPaidMethod()}</p>
+                            <p class="otros-detalles>Cantidad de productos actualmente disponibles: ${findPrdct.getStock()}</p>
+                        </div>
+                    </div>
+
+                    <div class="finalizar-compra">
+                        <p> Lorem ipsum dolor sit, amet consectetur adipisicing elit. Facilis libero enim repellendus excepturi nesciunt cupiditate sapiente dignissimos cumque odit deleniti non dolores, quam tenetur recusandae reiciendis sint numquam iusto eius! </p>
+                    </div>
                 </div>
             `;
         } else {
