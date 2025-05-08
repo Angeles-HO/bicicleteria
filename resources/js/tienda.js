@@ -1,6 +1,7 @@
 // Importar la clase ProductService desde el archivo productService.js
 import { ProductService } from '../js/classes/ProductService.js';
 import { Product } from '../js/classes/product.js';
+import { Storage } from '../js/classes/storage.js';
 // Esperar a que el DOM este completamente cargado antes de ejecutar el codigo
 document.addEventListener('DOMContentLoaded', async () => {
   try {
@@ -218,9 +219,9 @@ function setupBuyButtons() {
         console.error('El atributo data-idModelo no está definido en el botón.');
       }
 
-      // Guarda los datos en localStorage
-      localStorage.setItem('selectedProductId', productId);
-      localStorage.setItem('selectedProductModelo', productModelo);
+      // Guarda los datos con la ayuda de la clase Storage
+      Storage.set('selectedProductId', productId);
+      Storage.set('selectedProductModelo', productModelo);
 
       // Redirige a la página de compra
       window.location.href = '../../main/comprar/comprar.html';

@@ -43,5 +43,9 @@ header {
 
 /* Cambia el color del boton al pasar el mouse */
 .btn-volver:hover {
-    background-color: rgb(94, 120, 138);
+  background-color: rgb(94, 120, 138);
+}
+
+.compra-detalle {
+  background-color: aqua;
 }
