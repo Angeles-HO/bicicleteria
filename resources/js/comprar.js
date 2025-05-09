@@ -35,6 +35,7 @@ document.addEventListener('DOMContentLoaded', async () => {
 
         // test v0.2
         // veamos como va con map ["ARS", "USD", "EUR"]
+        // va joya
         const monedas = selectedPrdct.getIsCAE(selectedPrdct)
         const productPrecio = monedas.map(monedaSlct => selectedPrdct.getPrecio(monedaSlct))
         
