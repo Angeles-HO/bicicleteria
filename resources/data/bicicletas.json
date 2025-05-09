@@ -68,6 +68,56 @@
       "stock": 5,
       "imagen": "../../../../resources/imgs/mountain_bike_2.jpg",
       "descripcion": "Bicicleton SR Suntour."
+    },
+    {
+      "id": 4,
+      "marca": "asas",
+      "nombre": "Bicicleta Mtb, 24v",
+      "colores": [
+        {"color": "negro", "codigo": "#000000"},
+        {"color": "blanco", "codigo": "#FFFFFF"},
+        {"color": "gris", "codigo": "#808080"},
+        {"color": "verde", "codigo": "#008000"}
+      ],
+      "precio": [
+        {"moneda": "USD", "precio": 2124, "descuento": 5, "region": "en-US", "currency": "USD"},
+        {"moneda": "ARS", "precio": 2354000, "descuento": 10.3, "region": "ar-AR", "currency": "ARS"},
+        {"moneda": "EUR", "precio": 4214, "descuento": 0.15, "region": "es-EU", "currency": "EUR"}
+      ],
+      "etiquetas": [
+        "descenso (DH)",
+        "bicicleta de nieve/fat bike",
+        "doble suspension"
+      ],
+      "paidMethod": ["tarjeta"],
+      "stock": 10,
+      "imagen": "../../../../resources/imgs/mountain_bike_1.jpg",
+      "descripcion": "Bicicleton SR Suntour."
+    },
+    {
+      "id": 5,
+      "marca": "RAAW",
+      "nombre": "Bicicleta Mtb Overtech Q6 R29 Aluminio, 21v Con Shimano, Freno A Disco, Con Suspension, Color Negro/Azul/Rosa/Blanco, Tamaño Del Cuadro S.",
+      "colores": [
+        {"color": "negro", "codigo": "#000000"},
+        {"color": "blanco", "codigo": "#FFFFFF"},
+        {"color": "gris", "codigo": "#808080"},
+        {"color": "verde", "codigo": "#008000"}
+      ],
+      "precio": [
+        {"moneda": "USD", "precio": 2124, "descuento": 5, "region": "en-US", "currency": "USD"},
+        {"moneda": "ARS", "precio": 2354000, "descuento": 10.3, "region": "ar-AR", "currency": "ARS"},
+        {"moneda": "EUR", "precio": 4214, "descuento": 0.15, "region": "es-EU", "currency": "EUR"}
+      ],
+      "etiquetas": [
+        "descenso (DH)",
+        "bicicleta de nieve/fat bike",
+        "doble suspension"
+      ],
+      "paidMethod": ["tarjeta"],
+      "stock": 10,
+      "imagen": "../../../../resources/imgs/mountain_bike_1.jpg",
+      "descripcion": "Bicicleton SR Suntour."
     }
     ]
   },

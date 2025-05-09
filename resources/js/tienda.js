@@ -205,7 +205,6 @@ function renderProductos(categorias) {
                     </span>
                     ${PcD === 0 ? "": "<p> -P final: " + betterCTLstrg(PcD, moneda, producto)
                     +"</p>"}
-                    <br>
                   </div>
                 `).join("")}
             </div>

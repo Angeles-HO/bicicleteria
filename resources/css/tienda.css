@@ -80,28 +80,26 @@ select {
 
 /* Grid para organizar los productos, adaptable al tamaño de pantalla */
 .productos-grid {
-  display: grid;
+  display: inline-flex;
   grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
   gap: 20px;
   padding: 20px;
-  width: 100%;
-  
+  width: max-content;
+  height: max-content;
 }
 
 /* Tarjeta de producto con fondo degradado y sombra
 */
 
 .producto-card {
-  background: linear-gradient(135deg, #171a1f, #1d2d37);
+  background: linear-gradient(135deg, #46416b, #122a38);
   border-radius: 10px;
-  margin: 1rem;
   padding: 10px;
   box-shadow: 0 3px 10px rgba(0, 0, 0, 0.2);
   transition: transform 0.3s;
   display: flex;
   flex-direction: column;
   justify-content: space-between;
-  
 }
 
 /* Efecto de hover para la tarjeta, se eleva un poco */
@@ -186,10 +184,7 @@ select {
 /* Precios del producto, centrados y con margen */
 .producto-precios {
   color: #ffffff;
-  margin: 1rem 0;
-  color: rgb(255, 255, 255);
   font-size: 1.2rem;
-  margin: 1rem 0;
 }
 
 .descuento {
