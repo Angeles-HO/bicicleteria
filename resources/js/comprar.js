@@ -16,24 +16,26 @@ document.addEventListener('DOMContentLoaded', async () => {
             categoria.idModelo === productModelo &&
             categoria.productos.some(producto => producto.getId() === productId)
         )?.productos.find(producto => producto.getId() === productId);
+        const productPrecio = [findPrdct.getPrecio('ARS').toLocaleString('es-AR'), findPrdct.getPrecio('USD'), findPrdct.getPrecio('EUR')]
 
         if (findPrdct) {
             compraContainer.innerHTML = `
                 <div class="compra-detalle">
                     <div class="producto-detalles">
                         <img class="product-img" src="${findPrdct.getImgSrc()}">
-                        <h2>Detalles de la Compra</h2>
+                        <h2 class="testeo">Detalles de la Compra</h2>
                         <div class="mas-detalles">
-                            <p class="otros-detalles">Producto a Comprar: ${findPrdct.getNombre()}</p>
-                            <p class="otros-detalles">Modelo: ${findPrdct.getModelo()}</p>
-                            <p class="otros-detalles">Marca: ${findPrdct.getMarca()}</p>
-                            <ul class="otros-detalles>Precio: 
-                                <li class="lista-precio">ARS: $${findPrdct.getPrecio('ARS').toLocaleString('es-AR')}</li>
-                                <li class="lista-precio">USD: $${findPrdct.getPrecio('USD')}</li>
-                                <li class="lista-precio">EUR: $${findPrdct.getPrecio('EUR')}</li>
+                            <p class="otros-detalles"><strong>Producto a Comprar:</strong> ${findPrdct.getNombre()}</p>
+                            <p class="otros-detalles"><strong>Modelo:</strong> ${findPrdct.getModelo()}</p>
+                            <p class="otros-detalles"><strong>Marca:</strong> ${findPrdct.getMarca()}</p>
+                            <ul class="otros-detalles"> 
+                                <strong>Lista de Precios:</strong>
+                                <li class="lista-precio">ARS: $${productPrecio[0]}</li>
+                                <li class="lista-precio">USD: $${productPrecio[1]}</li>
+                                <li class="lista-precio">EUR: $${productPrecio[2]}</li>
                             </ul>
-                            <p class="otros-detalles>Metodos de Pago para este producto : ${findPrdct.getPaidMethod()}</p>
-                            <p class="otros-detalles>Cantidad de productos actualmente disponibles: ${findPrdct.getStock()}</p>
+                            <p class="otros-detalles"><strong>Metodos de Pago para este producto:</strong> ${findPrdct.getPaidMethod()}</p>
+                            <p class="otros-detalles"><strong>Cantidad de productos actualmente disponibles:</strong> ${findPrdct.getStock()}</p>
                         </div>
                     </div>
 

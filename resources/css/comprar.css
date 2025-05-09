@@ -56,9 +56,11 @@ header {
   max-width: max-content;
   gap: 1vw;
   justify-self:center;
+  
 }
 
 .producto-detalles {
+  display: box;
   background-color: rgba(2, 2, 2, 0.26);
   border: none;
   border-radius: 5px;
@@ -89,14 +91,24 @@ header {
 .mas-detalles {
   background-color: rgba(100, 83, 103, 0.173);
   padding: 1rem 1rem;
-  font-weight: 500;
+  font-weight: bold;
+  text-decoration: none;
+  text-shadow: 0px 2px 5px #000000;
   border: none;
   border-radius: 10px;
   margin-top: 1rem;
+  font-size: clamp(0.8rem, 1vw, 1rem);
 }
 
-
-
 .lista-precio {
-  margin: 1% 1rem;
+  margin: 0.5rem 1rem;
+}
+
+.otros-detalles {
+  margin-top: 0.6rem;
+}
+
+.testeo {
+  text-align: center;
+  font-size: clamp(1rem, 2vw, 1.5rem);
 }
