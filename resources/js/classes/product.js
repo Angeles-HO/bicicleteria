@@ -49,6 +49,10 @@ export class Product {
         return this._stock;
     }
 
+    getIsCAE(p) {
+        return this._precio.map(p => p.moneda)
+    }
+
     getPrecio(moneda) {
         return this._precio.find(p => p.moneda === moneda)?.precio ?? 'N/A';
     }

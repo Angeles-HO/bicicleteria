@@ -43,7 +43,7 @@ export class Storage {
   }
 
   static TKAE(key) {
-    return `${this.nameKey}${key}` in localStorage;
+    return localStorage.getItem(`${this.nameKey}${key}`) !== null;
   }
 
   static keys() {

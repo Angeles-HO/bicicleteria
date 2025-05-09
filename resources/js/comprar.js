@@ -29,36 +29,44 @@ document.addEventListener('DOMContentLoaded', async () => {
         
         // filtrar para encontrar el producto:
         // busca el idModelo y luego el id dentro del objeto del json productos
-        findPrdct = findPrdct(loadAllPrdctsData, productModelo, productId)
+        // Variable renombrada, no tuve en cuenta lo del mismo nombre de variable y funcion
+        // primera llamada funcionaba bien pero luego en una segunda daba undefined u objt dependiendo de lo que hacia
+        const selectedPrdct = findPrdct(loadAllPrdctsData, productModelo, productId)
 
-        const productPrecio = [ 
-            findPrdct?.getPrecio('ARS').toLocaleString('es-AR'), 
-            findPrdct?.getPrecio('USD'), 
-            findPrdct?.getPrecio('EUR')
-        ]
+        // test v0.2
+        // veamos como va con map ["ARS", "USD", "EUR"]
+        const monedas = selectedPrdct.getIsCAE(selectedPrdct)
+        const productPrecio = monedas.map(monedaSlct => selectedPrdct.getPrecio(monedaSlct))
+        
 
-        if (findPrdct) {
+        if (selectedPrdct) {
             compraContainer.innerHTML = `
                 <div class="compra-detalle">
                     <div class="producto-detalles">
-                        <img class="product-img" src="${findPrdct.getImgSrc()}">
+                        <img class="product-img" src="${selectedPrdct.getImgSrc()}">
                         <h2 class="testeo">Detalles de la Compra</h2>
                         <div class="mas-detalles">
-                            <p class="otros-detalles"><strong>Producto a Comprar:</strong> ${findPrdct.getNombre()}</p>
-                            <p class="otros-detalles"><strong>Modelo:</strong> ${findPrdct.getModelo()}</p>
-                            <p class="otros-detalles"><strong>Marca:</strong> ${findPrdct.getMarca()}</p>
+                            <p class="otros-detalles"><strong>Producto a Comprar:</strong> ${selectedPrdct.getNombre()}</p>
+                            <p class="otros-detalles"><strong>Modelo:</strong> ${selectedPrdct.getModelo()}</p>
+                            <p class="otros-detalles"><strong>Marca:</strong> ${selectedPrdct.getMarca()}</p>
+                            <!-- testeo de lista de carga dinamica de moneda existente -->
                             <ul class="otros-detalles"> 
                                 <strong>Lista de Precios:</strong>
-                                <li class="lista-precio">ARS: $${productPrecio[0]}</li>
-                                <li class="lista-precio">USD: $${productPrecio[1]}</li>
-                                <li class="lista-precio">EUR: $${productPrecio[2]}</li>
+                                ${monedas.map((moneda, indxVal) => `<li class="lista-precio">${moneda}: $${productPrecio[indxVal]}</li>`).join('')} <!-- join('') para sacar las comas generadas por default jsjs -->
                             </ul>
-                            <p class="otros-detalles"><strong>Metodos de Pago para este producto:</strong> ${findPrdct.getPaidMethod()}</p>
-                            <p class="otros-detalles"><strong>Cantidad de productos actualmente disponibles:</strong> ${findPrdct.getStock()}</p>
+                            <p class="otros-detalles"><strong>Metodos de Pago para este producto:</strong> ${selectedPrdct.getPaidMethod()}</p>
+                            <p class="otros-detalles"><strong>Cantidad de productos actualmente disponibles:</strong> ${selectedPrdct.getStock()}</p>
                         </div>
                     </div>
 
+                    <!-- seleccion de datos para finalizar compra:
+                        - recibir colores y seleccionar color final de compra
+                        - cantidad a comprar (teniendo en cuenta el stock)
+                        - retirar: [Envio, Local]
+                        - metodo de pago (usando classe Product getPaidMethod(), ej: "paidMethod": ["efectivo"] o ["efectivo", "tarjeta"])
+                    -->
                     <div class="finalizar-compra">
+                        <!-- test de ajuste de width responsive (dnmyc) -->
                         <p> Lorem ipsum dolor sit, amet consectetur adipisicing elit. Facilis libero enim repellendus excepturi nesciunt cupiditate sapiente dignissimos cumque odit deleniti non dolores, quam tenetur recusandae reiciendis sint numquam iusto eius! </p>
                     </div>
                 </div>
@@ -67,7 +75,8 @@ document.addEventListener('DOMContentLoaded', async () => {
             compraContainer.innerHTML = '<p>Error al cargar el elemento seleccionado, intete despues o comuniquese con el soporte --> [support] </p>';
         }
     } catch (error) {
-        console.error('<p>Hubo un problema al cargar los productos</p>', error);
+        // limpiar etiquetas de testeo (copy pega para evitar escribir lo mismo)
+        console.error('Hubo un problema al cargar los productos', error);
         compraContainer.innerHTML = '<p>Error al cargar el elemento seleccionado, intete despues o comuniquese con el soporte --> [support] </p>';
     }
   } else {
