@@ -270,3 +270,7 @@ select {
   transform: translateY(-2px);
 }
 
+.lista-precio {
+  text-decoration: none;
+}
+

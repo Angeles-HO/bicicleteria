@@ -54,11 +54,19 @@ export class Product {
     }
 
     getPrecio(moneda) {
-        return this._precio.find(p => p.moneda === moneda)?.precio ?? 'N/A';
+        return this._precio.find(p => p.moneda === moneda)?.precio ?? '';
     }
 
     getDescuento(moneda) {
-        return this._precio.find(p => p.moneda === moneda)?.descuento || 0;
+        return this._precio.find(p => p.moneda === moneda)?.descuento ?? '';
+    }
+
+    getRegion(moneda) {
+        return this._precio.find(p => p.moneda === moneda)?.region ?? '';
+    }
+
+    getCurrency(region) {
+        return this._precio.find(p => p.region === region)?.currency ?? '';
     }
 
     getImgSrc() {
@@ -85,6 +93,7 @@ export class Product {
             return 0;
         }
         const total = ifPrecio * (1 - ifDiscount/100);
-        return Math.max(total, 0);
+        const result = Math.max(total, 0);
+        return Math.round(result * 100) / 100;
     }
 }

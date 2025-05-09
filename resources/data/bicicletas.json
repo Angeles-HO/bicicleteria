@@ -14,9 +14,9 @@
         { "color": "Blanco", "codigo": "#FFFFFF" }
       ],
       "precio" : [
-        { "moneda": "USD", "precio": 500},
-        { "moneda": "ARS", "precio": 650000},
-        { "moneda": "EUR", "precio": 437}
+        { "moneda": "USD", "precio": 500, "descuento": 2, "region": "en-US", "currency": "USD"},
+        { "moneda": "ARS", "precio": 650000, "descuento": 8.2, "region": "ar-AR", "currency": "ARS"},
+        { "moneda": "EUR", "precio": 437, "descuento": 3.4, "region": "es-EU", "currency": "EUR"}
       ],
       "etiquetas": ["montaña", "aventura", "ciclismo"],
       "paidMethod": ["efectivo"],
@@ -34,9 +34,9 @@
         { "color": "Gris", "codigo": "#36454F" }
       ],
       "precio": [
-        { "moneda": "USD", "precio": 1200, "descuento": 12.3},
-        { "moneda": "ARS", "precio": 1560000, "descuento": 16.3},
-        { "moneda": "EUR", "precio": 1050, "descuento": 10.9}
+        { "moneda": "USD", "precio": 1200, "descuento": 12.3, "region": "en-US", "currency": "USD"},
+        { "moneda": "ARS", "precio": 1560000, "descuento": 16.3, "region": "ar-AR", "currency": "ARS"},
+        { "moneda": "EUR", "precio": 1050, "descuento": 10.9, "region": "es-EU", "currency": "EUR"}
       ],
       "etiquetas": ["elite", "competencia", "carbono", "suspensión completa"],
       "paidMethod": ["tarjeta"],
@@ -55,9 +55,9 @@
         {"color": "verde", "codigo": "#008000"}
       ],
       "precio": [
-        {"moneda": "EUR", "precio": 4844, "descuento": 0.15},
-        {"moneda": "USD", "precio": 2354, "descuento": 5},
-        {"moneda": "ARS", "precio": 2302000, "descuento": 10.3}
+        {"moneda": "USD", "precio": 2354, "descuento": 5, "region": "en-US", "currency": "USD"},
+        {"moneda": "ARS", "precio": 2302000, "descuento": 10.3, "region": "ar-AR", "currency": "ARS"},
+        {"moneda": "EUR", "precio": 4844, "descuento": 0.15, "region": "es-EU", "currency": "EUR"}
       ],
       "etiquetas": [
         "descenso (DH)",
@@ -86,7 +86,7 @@
       "precio" : [
           { "moneda": "USD", "precio": 251},
           { "moneda": "ARS", "precio": 295850},
-          { "moneda": "EUR", "precio": 220}
+          { "moneda": "EUR", "precio": 220, "descuento": 0.15, "region": "de-DE"}
       ],
       "etiquetas": ["urbano", "competencia", "acrobacias"],
       "paidMethod": ["tarjeta"],
@@ -105,9 +105,9 @@
         {"color": "blanco", "codigo": "#FFFFFF"}
       ],
       "precio": [
-        {"moneda": "EUR","precio": 1759},
         {"moneda": "USD", "precio": 934.56},
-        {"moneda": "ARS","precio": 6184560.0}
+        {"moneda": "ARS","precio": 6184560.0},
+        {"moneda": "EUR","precio": 1759, "descuento": 0.15, "region": "de-DE"}
       ],
       "etiquetas": ["bicicleta de 29 pulgadas", "doble suspension", "montaña", "descenso (DH)"],
       "paidMethod": ["efectivo"],

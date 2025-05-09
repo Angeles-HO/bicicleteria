@@ -27,6 +27,22 @@ document.addEventListener('DOMContentLoaded', async () => {
   }
 });
 
+// test v0.1
+function betterCTLstrg(value, moneda, producto) {
+  const srchRegion = producto.getRegion(moneda);
+  const srchCurrency = producto.getCurrency(srchRegion);
+  try { 
+    return Intl.NumberFormat(srchRegion, {
+    style: 'currency',
+    currency: srchCurrency,
+    minimumFractionDigits: 0
+  }).format(value);
+  } catch (error) {
+    console.warn(`Formato invalido para ${moneda} con ${srchRegion}`, error)
+    return value;
+  }
+}
+
 // Configura los filtros para filtrar los productos segun el modelo y el metodo de pago
 function setupFilters(data) {
   // Obtiene los elementos del DOM para los filtros de modelo y metodo de pago
@@ -131,13 +147,24 @@ function renderProductos(categorias) {
     
     // Itera sobre los productos de la categoria
     categoria.productos.forEach(producto => {
+      // Una verificacion
+      if (!producto) {
+        console.warn("producto no cargado")
+        return;
+      }
       // Obtiene los precios en USD y ARS del producto
-      const precioUSD = producto.getPrecio('USD'); // Obtiene el precio en USD
-      const precioARS = producto.getPrecio('ARS'); // Obtiene el precio en ARS
-      const descuentoUSD = producto.getDescuento('USD'); // Obtiene el descuento en USD
-      const descuentoARS = producto.getDescuento('ARS'); // Obtiene el descuento en ARS
-      const precioDescuentoARS = producto.getCalcularDescuento('ARS');
-      const precioDescuentoUSD = producto.getCalcularDescuento('USD');
+      // Nueva implementacion de busqueda y accesso
+      const monedas = producto.getIsCAE(producto);
+
+      // Agrupar todo en uno y vitar multiples llamados 
+      const detallesPPM = monedas.map(moneda => ({
+        moneda,
+        precio: producto.getPrecio(moneda),
+        descuento: producto?.getDescuento(moneda),
+        PcD: producto.getCalcularDescuento(moneda)
+      }));
+
+
       
       // Crea el HTML para cada producto
       const productoHTML = `
@@ -166,15 +193,21 @@ function renderProductos(categorias) {
                 `).join('')}
               </div>
             </div>
-            
+
+            <!-- https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Intl/NumberFormat/NumberFormat -->
+            <!-- algo confuso pero que funciona -->
             <div class="producto-precios">
-              <span class="precio-usd">USD $${precioUSD}</span> <!-- Precio en USD -->
-              ${descuentoUSD ? `<span class="descuento">-${descuentoUSD}%</span>` : ''} <!-- Muestra el descuento si existe -->
-              <br>
-              <span class="precio-ars">ARS $${precioARS.toLocaleString('es-AR')}</span> <!-- Precio en pesos -->
-              ${descuentoARS ? `<span class="descuento">-${descuentoARS}%</span>` : ''} <!-- Muestra el descuento si existe -->
-                  <br>
-              ${precioDescuentoARS ? `<span class="precio-ars-descuento">precio con descuento:<br> ARS $${precioDescuentoARS.toLocaleString('es-AR')}</span>` : ''}
+                ${detallesPPM.map(({moneda, precio, descuento, PcD}) => `
+                  <div class="lista-precio">
+                    ${moneda}: ${precio === '' ? "": betterCTLstrg(precio, moneda, producto)}
+                    <span class="descuento">
+                      ${descuento === '' ? "": "-"+descuento+"%"}
+                    </span>
+                    ${PcD === 0 ? "": "<p> -P final: " + betterCTLstrg(PcD, moneda, producto)
+                    +"</p>"}
+                    <br>
+                  </div>
+                `).join("")}
             </div>
             
             <!-- Sistema de comprobacion stock -->
