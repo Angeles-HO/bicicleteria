@@ -64,7 +64,7 @@
         "bicicleta de nieve/fat bike",
         "doble suspension"
       ],
-      "paidMethod": ["tarjeta"],
+      "paidMethod": ["efectivo"],
       "stock": 5,
       "imagen": "../../../../resources/imgs/mountain_bike_2.jpg",
       "descripcion": "Bicicleton SR Suntour."
@@ -114,7 +114,7 @@
         "bicicleta de nieve/fat bike",
         "doble suspension"
       ],
-      "paidMethod": ["tarjeta"],
+      "paidMethod": ["efectivo"],
       "stock": 10,
       "imagen": "../../../../resources/imgs/mountain_bike_1.jpg",
       "descripcion": "Bicicleton SR Suntour."

@@ -1,18 +1,43 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="es">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Login page</title>
+    <link rel="stylesheet" href="../../resources/css/login.css">
+    <script type="module" src="../../resources/js/login.js"></script>
+    <title>Logearse</title>
 </head>
 <body>
     <header>
         <div class="page-navegation">
-            <h1>Bienvenidos a la pagina para iniciar sesion</h1>
+            <h1>Bienvenidos a la pagina para logearse</h1>
             <a href="../home/index.html" class="btn-volver">Volver al Inicio</a>
         </div>
     </header>
-    <h1>No coffe, no work</h1>
-    <img src="../../resources/imgs/bsotd.jpg" alt="Coffee" width="300" height="200">
+    <main>
+        <div class="form-container">
+            <div class="form-wrapper"> 
+                <h2 class="testeo1">Entrar a la cuenta</h2>
+                <form action="../home/index.html" method="POST" class="login-form">
+                    <div class="form-group">
+                        <label for="username">Nombre de usuario:</label>
+                        <input type="text" id="username" name="username" required>
+                    </div>
+
+                    <div class="form-group">
+                        <label for="email">Correo electronico:</label>
+                        <input type="email" id="email" name="email" required>
+                    </div>
+
+                    <div class="form-group">
+                        <label for="password">Contraseña:</label>
+                        <input type="password" id="password" name="password" required>
+                    </div>
+                    <button type="submit" class="btn-login">Iniciar Sesion</button>
+                </form>
+                <p class="register-link">¿No tienes cuenta? <a href="../register/register.html">Registrate Aqui</a></p>
+            </div>
+        </div>
+    </main>
 </body>
 </html>
