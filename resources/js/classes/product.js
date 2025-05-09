@@ -50,7 +50,7 @@ export class Product {
     }
 
     getPrecio(moneda) {
-        return this._precio.find(p => p.moneda === moneda)?.precio;
+        return this._precio.find(p => p.moneda === moneda)?.precio ?? 'N/A';
     }
 
     getDescuento(moneda) {

@@ -1,6 +1,23 @@
 import { ProductService } from '../js/classes/ProductService.js';
 import { Storage } from '../js/classes/storage.js';
 
+// Testing v0.1
+
+/**
+    @param {Array<Object>} data - Recibir los datos cargados del json, cada objt es una categoria
+    @param {string} productModelo - Categoria donde esta actualmente el producto (ej: "MTB" o [{"idModelo": "MTB"},{"idModelo": "BMX"}])
+    @param {string|number} productId - Id (posicion) donde estan los datos del producto (ej: 5 o [{"idModelo": "MTB", "productos":[{"id": 1},{"id": 2}]}])
+*/
+
+function findPrdct(data, productModelo, productId) {
+    return data.find(categoria => 
+        categoria.idModelo === productModelo && categoria.productos.some(producto => 
+            producto.getId() === productId)
+        )?.productos.find(producto => 
+            producto.getId() === productId
+    );
+}
+
 document.addEventListener('DOMContentLoaded', async () => {
   const productId = Storage.get('selectedProductId');
   const productModelo = Storage.get('selectedProductModelo');
@@ -12,11 +29,13 @@ document.addEventListener('DOMContentLoaded', async () => {
         
         // filtrar para encontrar el producto:
         // busca el idModelo y luego el id dentro del objeto del json productos
-        const findPrdct = loadAllPrdctsData.find(categoria =>
-            categoria.idModelo === productModelo &&
-            categoria.productos.some(producto => producto.getId() === productId)
-        )?.productos.find(producto => producto.getId() === productId);
-        const productPrecio = [findPrdct.getPrecio('ARS').toLocaleString('es-AR'), findPrdct.getPrecio('USD'), findPrdct.getPrecio('EUR')]
+        findPrdct = findPrdct(loadAllPrdctsData, productModelo, productId)
+
+        const productPrecio = [ 
+            findPrdct?.getPrecio('ARS').toLocaleString('es-AR'), 
+            findPrdct?.getPrecio('USD'), 
+            findPrdct?.getPrecio('EUR')
+        ]
 
         if (findPrdct) {
             compraContainer.innerHTML = `
