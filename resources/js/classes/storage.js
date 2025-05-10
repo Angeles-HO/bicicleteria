@@ -42,6 +42,11 @@ export class Storage {
     return true;
   }
 
+  static logOut() {
+    this.remove("sessionActive");
+    this.remove("sessionUser");
+  }
+
   static TKAE(key) {
     return localStorage.getItem(`${this.nameKey}${key}`) !== null;
   }

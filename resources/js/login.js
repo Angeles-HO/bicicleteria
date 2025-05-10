@@ -1,5 +1,4 @@
 import { Storage } from "../js/classes/storage.js"
-import { User } from "../js/classes/user.js";
 
 document.addEventListener('DOMContentLoaded', () => {
     const formulario = document.querySelector('.login-form');
@@ -35,11 +34,5 @@ document.addEventListener('DOMContentLoaded', () => {
         } else {
             alert("Nombre de usuario, email o contraseña incorrectos")
         }
-
-        
-
-
-
     })
-    
 });
