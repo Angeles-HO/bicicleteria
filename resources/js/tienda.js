@@ -52,6 +52,7 @@ function setupFilters(data) {
   // Obtiene los elementos del DOM para los filtros de modelo y metodo de pago
   const filtroModelo = document.getElementById('filtro-modelo'); // Selector para filtrar por modelo
   const filtroPago = document.getElementById('method-paid-container'); // Selector para filtrar por metodo de pago
+  const filtroCurrency = document.getElementById('filtro-currency');
 
   // Verifica si el filtro de modelo ya tiene opciones cargadas
   if (filtroModelo.innerHTML === '') {
@@ -85,19 +86,27 @@ function setupFilters(data) {
     // Obtiene los valores seleccionados en los filtros
     const modeloSeleccionado = filtroModelo.value; // Valor seleccionado en el filtro de modelo
     const metodoPagoSeleccionado = filtroPago.value; // Valor seleccionado en el filtro de metodo de pago
+    const currencyType = filtroCurrency.value;
 
     // Filtra las categorias y sus productos segun los filtros seleccionados
     const productosFiltrados = data.map(categoria => {
       // Filtra los productos de la categoria por metodo de pago si se selecciono uno especifico
       let productos = categoria.productos;
+      
       if (metodoPagoSeleccionado !== 'todos') {
         productos = productos.filter(producto => 
           producto.paidMethod.includes(metodoPagoSeleccionado) // Incluye solo los productos que soportan el metodo de pago seleccionado
         );
       }
 
+      if (currencyType !== 'todos') {
+        productos = productos.filter(producto =>
+          producto.getIsCAE(producto).includes(currencyType)
+        );
+      }
+
       // Verifica si la categoria debe incluirse segun el modelo seleccionado
-      if (modeloSeleccionado !== 'todos' && categoria.idModelo !== modeloSeleccionado) {
+      if (modeloSeleccionado !== 'todos' && categoria.idModelo !== modeloSeleccionado && filtroCurrency !== 'todos') {
         return null; // Excluye esta categoria si no coincide con el modelo seleccionado
       }
 
@@ -186,6 +195,7 @@ function renderProductos(categorias) {
             <!-- Encontrar datos y mostrarlos -->
             <div class="producto-meta">
               <div class="colores">
+              <p class="colores-disponibles">Colores Disponibles</p>
               ${producto.getColores().map(color => `
                 <span style="background-color: ${color.codigo};" title="${color.color}"></span>
               `).join('')}

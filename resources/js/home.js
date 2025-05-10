@@ -38,11 +38,11 @@ document.addEventListener('DOMContentLoaded', () => {
             // que no se recargue la oagina
             e.preventDefault()
 
+            Storage.logOut();
             // Metodo que borra los datos ir a storage.js para mas detalles
-            Storage.logOut()
-            window.location.reload(); // recarga
+            window.location.href = "../home/index.html"; // recarga
         });
-
+        
         // Eliminar enlaces de registro y login si existen
         // Da un toque mas profesional
         if (regLink) regLink.remove();
@@ -51,6 +51,7 @@ document.addEventListener('DOMContentLoaded', () => {
         // Insertar el nombre del usuario y el enlace de logout en la navegacion
         navCntinr.insertBefore(unspan, carrito.nextSibling);
         navCntinr.insertBefore(logOL, unspan.nextSibling);
+        console.log(Storage.keys())
     } else {
         // Evento cuando el usuario no esta logeado
 

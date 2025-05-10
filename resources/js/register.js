@@ -34,7 +34,6 @@ document.addEventListener('DOMContentLoaded', () => {
         const newUser = new User(username, firstname, lastname, email, password);
 
         Storage.set("regDATAform", newUser);
-        Storage.set("ChinesseCokiesData_recolection", newUser); // jajaja if (cookies rejet) { return cookies.true } else { return cookies.true }
         
         window.location.href = "../login/login.html";
     });

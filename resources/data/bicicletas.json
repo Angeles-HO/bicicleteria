@@ -134,9 +134,9 @@
           { "color": "Plateado", "codigo": "#C0C0C0"}
       ],
       "precio" : [
-          { "moneda": "USD", "precio": 251},
-          { "moneda": "ARS", "precio": 295850},
-          { "moneda": "EUR", "precio": 220, "descuento": 0.15, "region": "de-DE"}
+          { "moneda": "USD", "precio": 251, "descuento": 4, "region": "en-US", "currency": "USD"},
+          { "moneda": "ARS", "precio": 295850, "descuento": 4, "region": "ar-AR", "currency": "ARS"},
+          { "moneda": "EUR", "precio": 220, "descuento": 2, "region": "es-EU", "currency": "EUR"}
       ],
       "etiquetas": ["urbano", "competencia", "acrobacias"],
       "paidMethod": ["tarjeta"],
@@ -155,9 +155,9 @@
         {"color": "blanco", "codigo": "#FFFFFF"}
       ],
       "precio": [
-        {"moneda": "USD", "precio": 934.56},
-        {"moneda": "ARS","precio": 6184560.0},
-        {"moneda": "EUR","precio": 1759, "descuento": 0.15, "region": "de-DE"}
+        {"moneda": "USD", "precio": 934.56, "descuento": 5, "region": "en-US", "currency": "USD"},
+        {"moneda": "ARS","precio": 6184560.0, "descuento": 7, "region": "ar-AR", "currency": "ARS"},
+        {"moneda": "EUR","precio": 1759, "descuento": 0.15, "region": "es-EU", "currency": "EUR"}
       ],
       "etiquetas": ["bicicleta de 29 pulgadas", "doble suspension", "montaña", "descenso (DH)"],
       "paidMethod": ["efectivo"],

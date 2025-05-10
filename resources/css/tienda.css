@@ -90,7 +90,6 @@ select {
 
 /* Tarjeta de producto con fondo degradado y sombra
 */
-
 .producto-card {
   background: linear-gradient(135deg, #46416b, #122a38);
   border-radius: 10px;
@@ -100,6 +99,7 @@ select {
   display: flex;
   flex-direction: column;
   justify-content: space-between;
+  width: 16svw;
 }
 
 /* Efecto de hover para la tarjeta, se eleva un poco */
@@ -117,13 +117,18 @@ select {
 }
 
 /* Circulos de colores para mostrar opciones de color */
-.colores span {
+.colores span{
   display: inline-block;
   width: 20px;
   height: 20px;
   border-radius: 50%;
-  margin-right: 5px;
+  margin-left: 1rem;
   border: 1px solid rgb(221, 221, 221);
+}
+
+.colores-disponibles {
+  color: #d4d4d4;
+  padding: 1vh 0;
 }
 
 /* Marca del producto, centrada y en negrita */
@@ -166,7 +171,6 @@ select {
   font-size: 1em;
   text-align: left;
   margin: 1rem 0;
-  
 }
 
 /* Metodos de pago, con fondo llamativo y distribucion horizontal */
@@ -221,7 +225,6 @@ select {
   width: 100%;
   cursor: pointer;
   transition: background 0.3s;
-  
 }
 
 /* Cambia el color del boton al pasar el mouse */
@@ -232,7 +235,7 @@ select {
 .productos {
   background-color: rgba(0, 0, 0, 0.2);
   padding: 5px;
-  max-width: 100%;
+  min-width: max-content;
   margin: 2rem 2rem;
   border: none;
   border-radius: 8px;
@@ -255,10 +258,10 @@ select {
   border-radius: 5px;
   background: linear-gradient(135deg, rgb(131, 179, 209), rgba(104, 85, 187, 0.785));
   padding: 10px 0;
+  min-width: max-content;
   width: 5vw;
   cursor: pointer;
   transition: transform 0.2s ease-in-out, box-shadow 0.2s ease-in-out; /* Transiciones suaves para hover */
-  
 }
 
 #btn-filtrar:hover {
@@ -269,3 +272,22 @@ select {
   text-decoration: none;
 }
 
+@media (max-width: 768px) {
+  .productos {
+    background-color: #7070713e;
+  }
+  .productos-grid {
+    display: grid;
+    justify-content: center;
+    max-width: 100%;
+    width: max-content;
+  }
+  
+  .producto-card {
+    background-color: #46416b;
+    display: grid;
+    justify-content: center;
+    max-width: 100%;
+    width: max-content;
+  }
+}

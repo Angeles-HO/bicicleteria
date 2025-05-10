@@ -43,8 +43,11 @@ export class Storage {
   }
 
   static logOut() {
-    this.remove("sessionActive");
-    this.remove("sessionUser");
+    const v1 = this.get("sessionActive")
+    const v2 = this.get("sessionUser")
+    this.remove(v1);
+    this.remove(v2);
+    return true;
   }
 
   static TKAE(key) {
