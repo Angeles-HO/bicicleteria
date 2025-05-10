@@ -1,6 +1,11 @@
 // Importar la clase ProductService desde el archivo productService.js
 import { ProductService } from '../js/classes/ProductService.js';
 import { Storage } from '../js/classes/storage.js';
+
+if (!Storage.get("sessionUser")) {
+  window.location.href = "../login/login.html";
+}
+
 // Esperar a que el DOM este completamente cargado antes de ejecutar el codigo
 document.addEventListener('DOMContentLoaded', async () => {
   try {

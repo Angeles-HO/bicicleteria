@@ -13,7 +13,8 @@ document.addEventListener('DOMContentLoaded', () => {
 
     // Links de referencia
     const regLink = document.querySelector('a[href="../register/register.html"]')
-    const logLink = document.querySelector('a[href="../login/login.html"]')
+    const logLink = document.querySelector('a[href="../login/login.html"]')  
+    const carrito2 =  document.querySelector('a[href="../store/store.html"]')
 
     if (isLogged) {
 
@@ -53,6 +54,13 @@ document.addEventListener('DOMContentLoaded', () => {
     } else {
         // Evento cuando el usuario no esta logeado
 
+        // Para evitar un pre-frame de la tienda antes de que envie al register si no estas logeado
+        carrito2.addEventListener("click", (e) => {
+            e.preventDefault()
+            window.location.href = "../register/register.html"
+        })
+        
+        
         // Crear un enlace de registro si no existe
         if (!regLink) {
             const newRegLink = document.createElement("a");

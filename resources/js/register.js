@@ -1,6 +1,17 @@
 import { User } from "../js/classes/user.js"
 import { Storage } from "../js/classes/storage.js"
 
+function thisEIV(correo) {
+    // https://w3.unpocodetodo.info/utiles/regex-ejemplos.php?type=email
+    // https://stackoverflow.com/questions/201323/how-can-i-validate-an-email-address-using-a-regular-expression
+    const verifyRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+    if (!verifyRegex.test(correo)) {
+        alert("Formato invalido");
+        return false;
+    }
+    return true;
+}
+
 document.addEventListener('DOMContentLoaded', () => {
     const formulario = document.querySelector('.registration-form');
 
@@ -12,10 +23,7 @@ document.addEventListener('DOMContentLoaded', () => {
         const email = document.getElementById('email').value.trim();
         const password = document.getElementById('password').value.trim();
 
-        if (!email) {
-            alert("Ingrese un email valido");
-            return;
-        }
+        if (thisEIV(email) == false) { return;}
 
         // Ahora algo siemple, despues validaciones como: [1-Mayuscula, 1-caracter especial]
         if (password.length < 8) {
@@ -26,6 +34,7 @@ document.addEventListener('DOMContentLoaded', () => {
         const newUser = new User(username, firstname, lastname, email, password);
 
         Storage.set("regDATAform", newUser);
+        Storage.set("ChinesseCokiesData_recolection", newUser); // jajaja if (cookies rejet) { return cookies.true } else { return cookies.true }
         
         window.location.href = "../login/login.html";
     });
