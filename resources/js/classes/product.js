@@ -50,7 +50,11 @@ export class Product {
     }
 
     getIsCAE(p) {
-        return this._precio.map(p => p.moneda)
+        return this._precio.map(a => a.moneda);
+    }
+
+    getIsCAE2(currency) {
+        return this._precio.map(p => p.moneda === currency)
     }
 
     getPrecio(moneda) {

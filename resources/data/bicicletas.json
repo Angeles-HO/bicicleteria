@@ -14,7 +14,6 @@
         { "color": "Blanco", "codigo": "#FFFFFF" }
       ],
       "precio" : [
-        { "moneda": "USD", "precio": 500, "descuento": 2, "region": "en-US", "currency": "USD"},
         { "moneda": "ARS", "precio": 650000, "descuento": 8.2, "region": "ar-AR", "currency": "ARS"},
         { "moneda": "EUR", "precio": 437, "descuento": 3.4, "region": "es-EU", "currency": "EUR"}
       ],

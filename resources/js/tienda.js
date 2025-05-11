@@ -81,6 +81,21 @@ function setupFilters(data) {
     });
   }
 
+  
+  if (filtroCurrency.innerHTML === '') {
+    const cCrrncy = new Set();
+    data.forEach(cat => {
+      cat.productos.forEach(prod => {
+        prod.precio.forEach(precio => {
+          cCrrncy.add(precio.moneda)
+        });
+      });
+    });
+    cCrrncy.map(moneda => {
+      filtroCurrency.innerHTML += `<option value="${moneda}">${moneda}</option>`
+    })
+  }
+
   // Funcion que maneja los cambios en los filtros
   const handleFilterChange = () => {
     // Obtiene los valores seleccionados en los filtros
@@ -101,12 +116,12 @@ function setupFilters(data) {
 
       if (currencyType !== 'todos') {
         productos = productos.filter(producto =>
-          producto.getIsCAE(producto).includes(currencyType)
+          producto.precio.some(precio => precio.moneda === currencyType)
         );
       }
 
       // Verifica si la categoria debe incluirse segun el modelo seleccionado
-      if (modeloSeleccionado !== 'todos' && categoria.idModelo !== modeloSeleccionado && filtroCurrency !== 'todos') {
+      if (modeloSeleccionado !== 'todos' && categoria.idModelo !== modeloSeleccionado) {
         return null; // Excluye esta categoria si no coincide con el modelo seleccionado
       }
 
@@ -124,6 +139,7 @@ function setupFilters(data) {
   // Agrega eventos de cambio a los filtros para ejecutar la funcion de filtrado
   filtroModelo.addEventListener('change', handleFilterChange); // Ejecuta el filtrado al cambiar el modelo
   filtroPago.addEventListener('change', handleFilterChange); // Ejecuta el filtrado al cambiar el metodo de pago
+  filtroCurrency.addEventListener('change', handleFilterChange); // Ejecuta el filtrado al cambiar el metodo de pago
 }
 
 // Renderiza los productos en la pagina

@@ -17,7 +17,6 @@ document.addEventListener('DOMContentLoaded', () => {
     const carrito2 =  document.querySelector('a[href="../store/store.html"]')
 
     if (isLogged) {
-
         // Obtener usuario ya logueado
         const usrnm = Storage.get("sessionUser");
 
