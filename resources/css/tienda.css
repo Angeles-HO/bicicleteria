@@ -140,17 +140,19 @@ select {
   padding: 5px 10px;
 }
 
-/* Badge para mostrar el stock, con colores llamativos */
+/* Badge para ¡ultimas unidades! */
 .stock-badge {
-  background-color: rgb(29, 53, 87);
+  background-color: #171a1f25;
   color: rgb(200, 56, 56);
-  padding: 5px 10px;
+  border: none;
   border-radius: 5px;
   font-size: 0.9rem;
-  display: flex;
   text-align: center;
-  justify-content: center;
-  padding: 1vh 0;
+  position:absolute;
+  width: max-content;
+  margin-left: 10.3rem;
+  padding: 0.2rem;
+  transition: 0.3s;
 }
 
 /* Nombre del producto, con margen y color claro */
@@ -175,14 +177,14 @@ select {
 
 /* Metodos de pago, con fondo llamativo y distribucion horizontal */
 .metodos-pago {
-  background-color: aquamarine;
+  background-color: rgb(100, 119, 163);
   display: flex;
   justify-content: space-between;
   margin: 1rem 0;
   border: none;
   border-radius: 5px;
   padding: 0.5rem 1rem;
-  width: 5rem;
+  width: max-content;
 }
 
 /* Precios del producto, centrados y con margen */

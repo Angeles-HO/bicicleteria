@@ -18,7 +18,7 @@
         { "moneda": "EUR", "precio": 437, "descuento": 3.4, "region": "es-EU", "currency": "EUR"}
       ],
       "etiquetas": ["montaña", "aventura", "ciclismo"],
-      "paidMethod": ["efectivo"],
+      "paidMethod": ["efectivo", "tarjeta"],
       "stock": 0,
       "imagen": "../../../../resources/imgs/mountain_bike_1.jpg",
       "descripcion": "Bicicleta de montaña"
@@ -181,7 +181,7 @@
         {"moneda": "EUR","precio": 4342, "descuento": 5, "region": "es-EU", "currency": "EUR"}
       ],
       "etiquetas": ["bicicleta de 29 pulgadas", "doble suspension", "montaña", "descenso (DH)"],
-      "paidMethod": ["targeta"],
+      "paidMethod": ["tarjeta"],
       "stock": 5,
       "imagen": "../../../../resources/imgs/bmx_blue_edition.jpg",
       "descripcion": "Bicicleta para BMX premiun"
