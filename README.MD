@@ -24,10 +24,10 @@
 
 **Estado del proyecto: En Desarrollo**
 **Contenido Actual:**
-*-[Y] Carga de productos*
-*-[Y] Renderizado modular*
-*-[Y] Filtros dinamicos*
-*-[Y] Capacidad de register/login con logput y almacenar el usuario para iniciar sesion devuelta*
+-[x] Carga de productos
+-[x] Renderizado modular
+-[x] Filtros dinamicos
+-[x] Capacidad de register/login con logput y almacenar el usuario para iniciar sesion devuelta
 
 ### Contenido en desarrollo:
 - [ ] Carrito de compras
