@@ -1,6 +1,7 @@
 // Importar la clase ProductService desde el archivo productService.js
 import { ProductService } from '../js/classes/ProductService.js';
 import { Storage } from '../js/classes/storage.js';
+import { renderFiltros } from '../js/classes/renderFiltros.js';
 
 if (!Storage.get("sessionUser")) {
   window.location.href = "../login/login.html";
@@ -53,49 +54,6 @@ function setupFilters(data) {
   const filtroModelo = document.getElementById('filtro-modelo'); // Selector para filtrar por modelo
   const filtroPago = document.getElementById('method-paid-container'); // Selector para filtrar por metodo de pago
   const filtroCurrency = document.getElementById('filtro-currency');
-
-  // Verifica si el filtro de modelo ya tiene opciones cargadas
-  if (filtroModelo.innerHTML === '') {
-    // Extrae los modelos unicos de las categorias en los datos
-    // Crear un array con valores unicos de idModelo
-    const modelosUnicos = [...new Set(data.map(cat => cat.idModelo))];
-    modelosUnicos.forEach(modelo => {
-      // Agrega cada modelo como una opcion en el filtro de modelo
-      filtroModelo.innerHTML += `<option value="${modelo}">${modelo}</option>`;
-    });
-  }
-
-  // Verifica si el filtro de metodo de pago ya tiene opciones cargadas
-  if (filtroPago.innerHTML === '') {
-    const metodosPago = new Set(); // Crea un conjunto para almacenar metodos de pago unicos
-    data.forEach(cat => {
-      // Itera sobre cada categoria y sus productos
-      cat.productos.forEach(prod => {
-        // Agrega cada metodo de pago del producto al conjunto
-        prod.paidMethod.forEach(m => metodosPago.add(m));
-      });
-    });
-    metodosPago.forEach(metodo => {
-      // Agrega cada metodo de pago como una opcion en el filtro de metodo de pago
-      filtroPago.innerHTML += `<option value="${metodo}">${metodo}</option>`;
-    });
-  }
-
-  
-  if (filtroCurrency.innerHTML === '') {
-    const cCrrncy = new Set();
-    data.forEach(cat => {
-      cat.productos.forEach(prod => {
-        prod.precio.forEach(precio => {
-          cCrrncy.add(precio.moneda)
-        });
-      });
-    });
-    cCrrncy.forEach(moneda => {
-      filtroCurrency.innerHTML += `<option value="${moneda}">${moneda}</option>`
-    })
-  }
-
   // Funcion que maneja los cambios en los filtros
   const handleFilterChange = () => {
     // Obtiene los valores seleccionados en los filtros
@@ -116,12 +74,12 @@ function setupFilters(data) {
 
       if (currencyType !== 'todos') {
         productos = productos.filter(producto =>
-          producto.getIsCAE2(currencyType)
+          producto.getIsCAE(producto).includes(currencyType)
         );
       }
 
       // Verifica si la categoria debe incluirse segun el modelo seleccionado
-      if (modeloSeleccionado !== 'todos' && categoria.idModelo !== modeloSeleccionado) {
+      if (modeloSeleccionado !== 'todos' && categoria.idModelo !== modeloSeleccionado && filtroCurrency !== 'todos') {
         return null; // Excluye esta categoria si no coincide con el modelo seleccionado
       }
 
@@ -131,15 +89,18 @@ function setupFilters(data) {
         productos: productos // Incluye solo los productos filtrados
       };
     }).filter(categoria => categoria !== null && categoria.productos.length > 0); // Excluye categorias vacias o nulas
-
     // Renderiza los productos filtrados en la pagina
     renderProductos(productosFiltrados);
   };
+  
+  const filtrosManager = new renderFiltros(
+    document.getElementById('filtro-modelo'), 
+    document.getElementById('method-paid-container'), 
+    document.getElementById('filtro-currency'), 
+    handleFilterChange
+  );
 
-  // Agrega eventos de cambio a los filtros para ejecutar la funcion de filtrado
-  filtroModelo.addEventListener('change', handleFilterChange); // Ejecuta el filtrado al cambiar el modelo
-  filtroPago.addEventListener('change', handleFilterChange); // Ejecuta el filtrado al cambiar el metodo de pago
-  filtroCurrency.addEventListener('change', handleFilterChange); // Ejecuta el filtrado al cambiar el metodo de pago
+  filtrosManager.inicializate(data)
 }
 
 // Renderiza los productos en la pagina
@@ -193,6 +154,8 @@ function renderProductos(categorias) {
         PcD: producto.getCalcularDescuento(moneda)
       }));
 
+
+      
       // Crea el HTML para cada producto
       const productoHTML = `
         <div class="producto-card" data-id="${producto.getId()}">
