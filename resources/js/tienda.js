@@ -7,6 +7,7 @@ import { renderProd } from '../js/classes/rendererProducts.js'
 if (!Storage.get("sessionUser")) {
   window.location.href = "../login/login.html";
 }
+
 const renderer = new renderProd();
 // Esperar a que el DOM este completamente cargado antes de ejecutar el codigo
 document.addEventListener('DOMContentLoaded', async () => {

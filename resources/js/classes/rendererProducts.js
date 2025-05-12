@@ -1,3 +1,5 @@
+import { Storage } from "../classes/storage.js";
+
 export class renderProd {
     constructor(containerId = 'productos-container') {
         this.container = document.getElementById(containerId);
@@ -80,49 +82,46 @@ export class renderProd {
         }));
 
         return `
-      <div class="producto-card" data-id="${producto.getId()}">
-        <div class="producto-imagen-container">
-          <img src="..${producto.getImgSrc()}" alt="${producto.getDescripcion()}" class="producto-imagen"
-            onerror="this.src='../../resources/imgs/bsotd.jpg'">
-          ${producto.getStock() > 0 && producto.getStock() <= 3 ? '<span class="stock-badge">¡últimas unidades!</span>' : ''}
-        </div>
-        <div class="producto-info">
-          <p class="producto-marca">${producto.getMarca()}</p>
-          <p class="producto-nombre">${producto.getNombre()}</p>
-          <p class="producto-descripcion">${producto.getDescripcion()}</p>
-
-          <div class="producto-meta">
-            <div class="colores">
-              <p class="colores-disponibles">Colores Disponibles</p>
-              ${producto.getColores().map(color => `
-                <span style="background-color: ${color.codigo};" title="${color.color}"></span>
-              `).join('')}
+        <div class="producto-card" data-id="${producto.getId()}">
+            <div class="producto-imagen-container">
+                <img src="..${producto.getImgSrc()}" alt="${producto.getDescripcion()}" class="producto-imagen"
+                onerror="this.src='../../resources/imgs/bsotd.jpg'">
+                ${producto.getStock() > 0 && producto.getStock() <= 3 ? '<span class="stock-badge">¡ultimas unidades!</span>' : ''}
             </div>
-            <div class="metodos-pago">
-              ${producto.getPaidMethod().map(m => `<span class="metodo-pago ${m}">${m}</span>`).join('')}
+            <div class="producto-info">
+                <p class="producto-marca">${producto.getMarca()}</p>
+                <p class="producto-nombre">${producto.getNombre()}</p>
+                <p class="producto-descripcion">${producto.getDescripcion()}</p>
+                <div class="producto-meta">
+                    <div class="colores">
+                        <p class="colores-disponibles">Colores Disponibles</p>
+                        ${producto.getColores().map(color => `
+                          <span style="background-color: ${color.codigo};" title="${color.color}"></span>
+                        `).join('')}
+                    </div>
+                    <div class="metodos-pago">
+                        ${producto.getPaidMethod().map(m => `<span class="metodo-pago ${m}">${m}</span>`).join('')}
+                    </div>
+                </div>
+                <div class="producto-precios">
+                    ${detallesPPM.map(({ moneda, precio, descuento, PcD }) => `
+                    <div class="lista-precio">
+                        ${moneda}: ${precio === '' ? "" : this.betterCTLstrg(precio, moneda, producto)}
+                        <span class="descuento">${descuento === '' ? "" : "-" + descuento + "%"}</span>
+                        ${PcD === 0 ? "" : `<p>-P final: ${this.betterCTLstrg(PcD, moneda, producto)}</p>`}
+                    </div>
+                    `).join("")}
+                </div>
+                <div class="producto-acciones">
+                    <span class="stock ${producto.getStock() > 0 ? 'en-stock' : 'agotado'}">
+                      ${producto.getStock() > 0 ? '🟢 En stock' : '🔴 Agotado'}
+                    </span>
+                    <button class="btn-comprar" data-id="${producto.getId()}" data-idmodelo="${producto.getIdModelo()}">
+                      COMPRAR
+                    </button>
+                </div>
             </div>
-          </div>
-
-          <div class="producto-precios">
-            ${detallesPPM.map(({ moneda, precio, descuento, PcD }) => `
-              <div class="lista-precio">
-                ${moneda}: ${precio === '' ? "" : this.betterCTLstrg(precio, moneda, producto)}
-                <span class="descuento">${descuento === '' ? "" : "-" + descuento + "%"}</span>
-                ${PcD === 0 ? "" : `<p>-P final: ${this.betterCTLstrg(PcD, moneda, producto)}</p>`}
-              </div>
-            `).join("")}
-          </div>
-
-          <div class="producto-acciones">
-            <span class="stock ${producto.getStock() > 0 ? 'en-stock' : 'agotado'}">
-              ${producto.getStock() > 0 ? '🟢 En stock' : '🔴 Agotado'}
-            </span>
-            <button class="btn-comprar" data-id="${producto.getId()}" data-idmodelo="${producto.getIdModelo()}">
-              COMPRAR
-            </button>
-          </div>
         </div>
-      </div>
     `;
     }
 
