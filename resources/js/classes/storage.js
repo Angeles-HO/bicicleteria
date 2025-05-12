@@ -21,6 +21,9 @@ export class Storage {
     return true;
   }
   
+  /**
+   * @returns Obtiene los datos de la llave que se recive, si no se encuentra la llave principal devolvemos null
+  */
   static get(key, defaultValue = null) {
     if (!key) return defaultValue; // si no se encuentra la llave devolvemos NULL
 
@@ -36,24 +39,42 @@ export class Storage {
     }
   }
 
+  /**
+   * @returns Remover las llaves que se reciven
+  */
   static remove(key) {
     if (!key) return false;
     localStorage.removeItem(`${this.nameKey}${key}`);
     return true;
   }
 
+  /**
+   * @returns Elimina los datos simulando que se salio de la cuenta
+  */
   static logOut() {
-    const v1 = this.get("sessionActive")
-    const v2 = this.get("sessionUser")
-    this.remove(v1);
-    this.remove(v2);
-    return true;
+    this.remove("sessionUser");
+    this.remove("sessionActive");
   }
 
+  /**
+   * @returns Elimina los todos los datos que tengan que ver con el usuario registrado (actualmente solo 1, en futuro mas)
+  */
+  static removeUser() {
+    this.remove("regDATAform");
+    this.remove("sessionUser");
+    this.remove("sessionActive");
+  }
+
+  /**
+   * @returns Verifica que la llave que se recive ("string") y verifica que no sea null.
+  */
   static TKAE(key) {
     return localStorage.getItem(`${this.nameKey}${key}`) !== null;
   }
 
+  /**
+   * @returns Devuelve todas las llaves actualmente existentes
+  */
   static keys() {
     return Object.keys(localStorage).filter(k => k.startsWith(this.nameKey));
   }

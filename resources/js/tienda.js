@@ -91,7 +91,7 @@ function setupFilters(data) {
         });
       });
     });
-    cCrrncy.map(moneda => {
+    cCrrncy.forEach(moneda => {
       filtroCurrency.innerHTML += `<option value="${moneda}">${moneda}</option>`
     })
   }
@@ -116,7 +116,7 @@ function setupFilters(data) {
 
       if (currencyType !== 'todos') {
         productos = productos.filter(producto =>
-          producto.precio.some(precio => precio.moneda === currencyType)
+          producto.getIsCAE2(currencyType)
         );
       }
 
@@ -193,8 +193,6 @@ function renderProductos(categorias) {
         PcD: producto.getCalcularDescuento(moneda)
       }));
 
-
-      
       // Crea el HTML para cada producto
       const productoHTML = `
         <div class="producto-card" data-id="${producto.getId()}">

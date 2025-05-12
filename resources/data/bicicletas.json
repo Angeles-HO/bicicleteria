@@ -163,7 +163,93 @@
       "stock": 2,
       "imagen": "../../../../resources/imgs/bsotd.jpg",
       "descripcion": "Bicicleta para BMX"
-      }
+    },
+    {
+      "id": 3,
+      "marca": "Athena",
+      "nombre": "Bicicleta BMX, Limited edition blue, other colors are normal",
+      "colores": [
+        {"color": "azul", "codigo": "#432aff"}, 
+        {"color": "negro", "codigo": "#000000"},
+        {"color": "gris", "codigo": "#808080"},
+        {"color": "verde", "codigo": "#008000"},
+        {"color": "blanco", "codigo": "#FFFFFF"}
+      ],
+      "precio": [
+        {"moneda": "USD", "precio": 4632.41, "descuento": 7, "region": "en-US", "currency": "USD"},
+        {"moneda": "ARS","precio": 5231510.0, "descuento": 10, "region": "ar-AR", "currency": "ARS"},
+        {"moneda": "EUR","precio": 4342, "descuento": 5, "region": "es-EU", "currency": "EUR"}
+      ],
+      "etiquetas": ["bicicleta de 29 pulgadas", "doble suspension", "montaña", "descenso (DH)"],
+      "paidMethod": ["targeta"],
+      "stock": 5,
+      "imagen": "../../../../resources/imgs/bmx_blue_edition.jpg",
+      "descripcion": "Bicicleta para BMX premiun"
+    },
+    {
+      "id": 4,
+      "marca": "Astral",
+      "nombre": "Bicicleta BMX, La primera BMX diseñada para cualquier ser vivo con equilibrio basico. Incluye manual de uso para perros",
+      "colores": [
+        {"color": "rojo", "codigo": "#ff0000"}, 
+        {"color": "negro", "codigo": "#000000"},
+        {"color": "gris", "codigo": "#808080"},
+        {"color": "blanco", "codigo": "#FFFFFF"}
+      ],
+      "precio": [
+        {"moneda": "USD", "precio": 4632.41, "descuento": 7, "region": "en-US", "currency": "USD"},
+        {"moneda": "ARS","precio": 5231510.0, "descuento": 10, "region": "ar-AR", "currency": "ARS"},
+        {"moneda": "EUR","precio": 4342, "descuento": 5, "region": "es-EU", "currency": "EUR"}
+      ],
+      "etiquetas": ["Universal", "doble suspension", "trans-especie"],
+      "paidMethod": ["efectivo"],
+      "stock": 1,
+      "imagen": "../../../../resources/imgs/bmx_blue_edition.jpg",
+      "descripcion": "Bicicleta para BMX premiun"
+    },
+    {
+      "id": 5,
+      "marca": "Hades",
+      "nombre": "Bicicleta BMX, La mejor bicicleta para estilo libre",
+      "colores": [
+        {"color": "azul", "codigo": "#432aff"}, 
+        {"color": "Rosa", "codigo": "#FF00FF"}
+      ],
+      "precio": [
+        {"moneda": "USD", "precio": 641.41, "descuento": "", "region": "en-US", "currency": "USD"},
+        {"moneda": "ARS","precio": 721000.0, "descuento": 11, "region": "ar-AR", "currency": "ARS"},
+        {"moneda": "EUR","precio": 612, "descuento": "", "region": "es-EU", "currency": "EUR"}
+      ],
+      "etiquetas": ["Universal", "doble suspension", "trans-especie"],
+      "paidMethod": ["efectivo"],
+      "stock": 1,
+      "imagen": "../../../../resources/imgs/bmx_hybrid.jpg",
+      "descripcion": "Bicicleta para BMX premiun"
+    }
+    ]
+  },
+  {
+    "idModelo": "cyti",
+    "modelo": "Bicicleta de Ciudad",
+    "productos" : [
+    {
+      "id": 1,
+      "marca": "Hades",
+      "nombre": "Bicicleta de ciudad con buen equilibrio",
+      "colores": [
+        {"color": "Negro", "codigo": "#000000"}
+      ],
+      "precio" : [
+        { "moneda": "USD", "precio": 97, "descuento": "", "region": "en-US", "currency": "USD"},
+        { "moneda": "ARS", "precio": 119000, "descuento": "", "region": "ar-AR", "currency": "ARS"},
+        { "moneda": "EUR", "precio": 86, "descuento": "", "region": "es-EU", "currency": "EUR"}
+      ],
+      "etiquetas": ["urbano", "paseos"],
+      "paidMethod": ["tarjeta"],
+      "stock": 5,
+      "imagen": "../../../../Resources/imgs/bicicleta_bmx_1.jpg",
+      "descripcion": "Bicicleta para anda en la ciudad"
+    }
     ]
   }
 ]

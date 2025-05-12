@@ -33,11 +33,12 @@ document.addEventListener('DOMContentLoaded', () => {
 
         // Le agregamos un evento cuando le demos click al enlace
         logOL.addEventListener("click", (e) => {
-
             // que no se recargue la oagina
             e.preventDefault()
 
+            // "Cerrar Sesion"
             Storage.logOut();
+
             // Metodo que borra los datos ir a storage.js para mas detalles
             window.location.href = "../home/index.html"; // recarga
         });
