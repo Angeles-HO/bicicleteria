@@ -97,7 +97,7 @@ export class renderProd {
         return `
         <div class="producto-card" data-id="${producto.getId()}">
             <div class="producto-imagen-container">
-                ${producto.getStock() > 0 && producto.getStock() <= 3 ? '<span class="stock-badge">¡ultimas unidades!</span>' : ''}
+                ${producto.getStock() > 0 && producto.getStock() <= 3 ? '<p class="stock-badge">🔥¡ultimas unidades!</p>' : ''}
                 <img src="..${producto.getImgSrc()}" alt="${producto.getDescripcion()}" class="producto-imagen"
                 onerror="this.src='../../resources/imgs/bsotd.jpg'">
             </div>
@@ -125,7 +125,7 @@ export class renderProd {
         <div class="lista-precio">
             ${moneda}: ${precio === '' ? "" : this.betterCTLstrg(precio, moneda, prod)}
             <span class="descuento">${descuento === '' ? "" : "-" + descuento + "%"}</span>
-            ${PcD === 0 ? "" : `<p>-P final: ${this.betterCTLstrg(PcD, moneda, prod)}</p>`}
+            ${PcD === 0 ? "" : `<p class="p-final">- P. final: ${this.betterCTLstrg(PcD, moneda, prod)}</p>`}
         </div>
         `).join("")
     }
@@ -144,7 +144,7 @@ export class renderProd {
     getGenPaidMethod(p) {
         return `
         <div class="metodos-pago">
-            ${p.getPaidMethod().map(m => `<span class="metodo-pago ${m}">${m}</span>`).join(',')}
+            ${p.getPaidMethod().map(m => `<span class="metodo-pago ${m}">${m}</span>`).join('')}
         </div>
         `;
     }

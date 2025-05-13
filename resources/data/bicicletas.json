@@ -39,7 +39,7 @@
       ],
       "etiquetas": ["elite", "competencia", "carbono", "suspensión completa"],
       "paidMethod": ["tarjeta"],
-      "stock": 10,
+      "stock": 1,
       "imagen": "../../../../resources/imgs/mountain_bike_2.jpg",
       "descripcion": "Bicicleta de montaña de alta gama"
     }, 
@@ -64,7 +64,7 @@
         "doble suspension"
       ],
       "paidMethod": ["efectivo"],
-      "stock": 5,
+      "stock": 2,
       "imagen": "../../../../resources/imgs/mountain_bike_2.jpg",
       "descripcion": "Bicicleton SR Suntour."
     },

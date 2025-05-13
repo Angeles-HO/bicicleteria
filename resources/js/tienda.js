@@ -30,7 +30,6 @@ document.addEventListener('DOMContentLoaded', async () => {
   }
 });
 
-
 // Configura los filtros para filtrar los productos segun el modelo y el metodo de pago
 function setupFilters(data) {
   // Obtiene los elementos del DOM para los filtros de modelo y metodo de pago
