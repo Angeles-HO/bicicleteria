@@ -26,11 +26,7 @@ document.addEventListener('DOMContentLoaded', async () => {
   } catch (error) {
     // Si ocurre un error, lo muestra en la consola y en la interfaz
     console.error('Error:', error);
-    document.getElementById('productos-container').innerHTML = `
-      <div class="error-message">
-        <p>No se pudieron cargar los productos. Por favor intenta mas tarde.</p>
-      </div>
-    `;
+    return renderer.PrdNotLoaded();
   }
 });
 
@@ -66,7 +62,7 @@ function setupFilters(data) {
       }
 
       // Verifica si la categoria debe incluirse segun el modelo seleccionado
-      if (modeloSeleccionado !== 'todos' && categoria.idModelo !== modeloSeleccionado && filtroCurrency !== 'todos') {
+      if (modeloSeleccionado !== 'todos' && categoria.idModelo !== modeloSeleccionado) {
         return null; // Excluye esta categoria si no coincide con el modelo seleccionado
       }
 

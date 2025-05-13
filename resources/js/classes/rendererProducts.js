@@ -31,6 +31,13 @@ export class renderProd {
         </div>`;
     }
 
+    PrdNotLoaded() {
+        this.container.innerHTML = `
+        <div class="error-message">
+            <p>No se pudieron cargar los productos. Por favor intenta mas tarde.</p>
+        </div>`;
+    }
+
     // Render categoria
     renderCat(cat) {
         // Crea un contenedor para la categoria
@@ -50,7 +57,7 @@ export class renderProd {
             // Una verificacion
             if (!prod) return console.warn('producto no cargado');
 
-            const cardProdHTML = this.generateCardProd_x_Element(prod);
+            const cardProdHTML = this.genCardProdElemt(prod);
             productosGrid.insertAdjacentHTML('beforeend', cardProdHTML);
         });
         categoriaSection.appendChild(productosGrid);
@@ -74,7 +81,7 @@ export class renderProd {
     }
 
     // Genera los datos de cada producto
-    generateCardProd_x_Element(producto) {
+    genCardProdElemt(producto) {
         // Obtiene los precios en USD y ARS del producto
         // Nueva implementacion de busqueda y accesso
         const monedas = producto.getIsCAE();
@@ -103,13 +110,7 @@ export class renderProd {
                     ${this.getGenPaidMethod(producto)}
                 </div>
                 <div class="producto-precios">
-                    ${detallesPPM.map(({ moneda, precio, descuento, PcD }) => `
-                    <div class="lista-precio">
-                        ${moneda}: ${precio === '' ? "" : this.betterCTLstrg(precio, moneda, producto)}
-                        <span class="descuento">${descuento === '' ? "" : "-" + descuento + "%"}</span>
-                        ${PcD === 0 ? "" : `<p>-P final: ${this.betterCTLstrg(PcD, moneda, producto)}</p>`}
-                    </div>
-                    `).join("")}
+                    ${this.getGenListPrec(detallesPPM, producto)}
                 </div>
                 <div class="producto-acciones">
                     ${this.getGenStockMethod(producto)}
@@ -119,6 +120,16 @@ export class renderProd {
     `;
     }
 
+    getGenListPrec(details, prod) {
+        return details.map(({moneda, precio, descuento, PcD}) => `
+        <div class="lista-precio">
+            ${moneda}: ${precio === '' ? "" : this.betterCTLstrg(precio, moneda, prod)}
+            <span class="descuento">${descuento === '' ? "" : "-" + descuento + "%"}</span>
+            ${PcD === 0 ? "" : `<p>-P final: ${this.betterCTLstrg(PcD, moneda, prod)}</p>`}
+        </div>
+        `).join("")
+    }
+    
     getGenColorHTML(p) {
         return `
         <div class="colores">
@@ -143,9 +154,7 @@ export class renderProd {
         <span class="stock ${p.getStock() > 0 ? 'en-stock' : 'agotado'}">
             ${p.getStock() > 0 ? '🟢 En stock' : '🔴 Agotado'}
         </span>
-        <button class="btn-comprar" data-id="${p.getId()}" data-idmodelo="${p.getIdModelo()}">
-        COMPRAR
-        </button>
+        <button class="btn-comprar" data-id="${p.getId()}" data-idmodelo="${p.getIdModelo()}">COMPRAR</button>
         `;
     }
 
@@ -155,13 +164,10 @@ export class renderProd {
                 e.preventDefault();
                 const productId = e.target.dataset.id; // Obtiene el ID del producto
                 const productModelo = e.target.dataset.idmodelo; // Obtiene el ID del modelo
-                console.log('Product ID:', productId);
-                console.log('Product Modelo:', productModelo);
     
                 if (!productModelo) {
                   console.error('El atributo data-idModelo no está definido en el botón.');
                 }
-    
                 // Guarda los datos con la ayuda de la clase Storage
                 Storage.set('selectedProductId', productId);
                 Storage.set('selectedProductModelo', productModelo);

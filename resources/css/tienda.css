@@ -277,6 +277,40 @@ select {
   text-decoration: none;
 }
 
+/* test css de ig*/
+
+.producto-imagen {
+  --hover-scale: 1.05;
+  --transition-time: 0.4s;
+  transition: all var(--transition-time) cubic-bezier(0.25, 0.46, 0.45, 0.94);
+  box-shadow: 0 2px 12px rgba(0, 0, 0, 0.1);
+  aspect-ratio: 1/1;
+}
+
+.producto-imagen:hover {
+  transform: scale(var(--hover-scale));
+  filter: drop-shadow(0px 4px 16px rgba(0, 0, 0, 0.15)) brightness(1.05);
+  z-index: 10;
+}
+
+.producto-card:hover .producto-imagen {
+  transform: translateY(-2px) scale(var(--hover-scale));
+}
+
+@keyframes softZoom {
+  0% { transform: scale(0.98); opacity: 0.9; }
+  100% { transform: scale(1); opacity: 1; }
+}
+
+.producto-imagen {
+  animation: softZoom 0.6s ease-out;
+}
+
+.producto-imagen:focus-visible {
+  outline: 2px solid var(--badge-color);
+  outline-offset: 3px;
+}
+
 @media (max-width: 768px) {
   .productos {
     background-color: #7070713e;
