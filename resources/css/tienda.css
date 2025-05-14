@@ -49,14 +49,13 @@ header {
 
 /* Contenedor de filtros con bordes redondeados y fondo semitransparente */
 .filtros {
-  display: flexbox;
-  justify-content: space-between;
-  align-items: center;
+  display: flex;
   padding: 5px;
   border: none;
   border-radius: 8px;
-  margin: 2rem 2rem;
+  margin: 2rem 1rem;
   max-width: max-content;
+  gap: 10px;
 }
 
 .filtro-select {
@@ -325,10 +324,11 @@ select {
   z-index: 2;
   border-radius: 6px;
   margin: 1rem 1rem;
-  padding: 0;
+  padding: 2px 5px;
   box-shadow: 0 0 12px rgba(254, 193, 106, 0.9);
-  font-size: 0.8rem;
+  font-size: 0.9rem;
   font-weight: bold;
+  border: solid 1px #00000042;
 }
 
 .stock-badge::before  {
@@ -361,7 +361,6 @@ select {
     width: max-content;
   }
 }
-
 
 @keyframes shake {
   0%, 100% { transform: translateX(0); }

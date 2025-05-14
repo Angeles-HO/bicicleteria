@@ -21,7 +21,7 @@ function findPrdct(data, productModelo, productId) {
 document.addEventListener('DOMContentLoaded', async () => {
   const productId = Storage.get('selectedProductId');
   const productModelo = Storage.get('selectedProductModelo');
-  const compraContainer = document.getElementById('compra-container');
+  const compraContainer = document.getElementById('finalizar-compra');
   
   if (productId && productModelo) {
     try {
@@ -42,21 +42,44 @@ document.addEventListener('DOMContentLoaded', async () => {
 
         if (selectedPrdct) {
             compraContainer.innerHTML = `
-                <div class="compra-detalle">
-                    <div class="producto-detalles">
-                        <img class="product-img" src="${selectedPrdct.getImgSrc()}">
+                <form id="compra-container">
+                    <div id="campos-prod" class="producto-detalles">
+                        <div id="section-prod-image">
+                            <img class="prod-img" src="${selectedPrdct.getImgSrc()}">
+                        </div>
                         <h2 class="testeo">Detalles de la Compra</h2>
                         <div class="mas-detalles">
-                            <p class="otros-detalles"><strong>Producto a Comprar:</strong> ${selectedPrdct.getNombre()}</p>
-                            <p class="otros-detalles"><strong>Modelo:</strong> ${selectedPrdct.getModelo()}</p>
-                            <p class="otros-detalles"><strong>Marca:</strong> ${selectedPrdct.getMarca()}</p>
-                            <!-- testeo de lista de carga dinamica de moneda existente -->
+                            <p class="otros-detalles">Producto a Comprar: ${selectedPrdct.getNombre()}</p>
+                            <p class="otros-detalles">Modelo: ${selectedPrdct.getModelo()}</p>
+                            <p class="otros-detalles">Marca: ${selectedPrdct.getMarca()}</p>
+                            <p class="otros-detalles">Elige un color:</p>
+                            <div class="color-options">
+                                ${selectedPrdct.getColores().map(color => 
+                                `<label class="color-option">
+                                    <input type="radio" name="color" value="${color.color}" required>
+                                    <span class="color-preview" style="background-color: ${color.codigo}"></span>
+                                    ${color.color}
+                                </label>`).join('')}
+                            </div>
+                            
+                            <div class="cntrol-strock">
+                                <p class="otros-detalles">Cantidad de productos actualmente disponibles: ${selectedPrdct.getStock()}</p>
+                                <label>Cantidad:</label>
+                                <input type="number" id="cantidad" min="1" max="${selectedPrdct.getStock()}" value="1" required>
+                            </div>
+                            <div class="method-envio">
+                                <label>Metodo de Envio:</label>
+                                <select id="metodo-envio" required>
+                                    <option value="">Seleccione...</option>
+                                    <option value="retiro-local">Retiro en Local</option>
+                                    <option value="envio-domicilio">Envio a Domicilio</option>
+                                </select>
+                            </div>
+                            <p class="otros-detalles">Metodos de Pago para este producto: ${selectedPrdct.getPaidMethod()}</p>
                             <ul class="otros-detalles"> 
-                                <strong>Lista de Precios:</strong>
+                                Lista de Precios:
                                 ${monedas.map((moneda, indxVal) => `<li class="lista-precio">${moneda}: $${productPrecio[indxVal]}</li>`).join('')} <!-- join('') para sacar las comas generadas por default jsjs -->
                             </ul>
-                            <p class="otros-detalles"><strong>Metodos de Pago para este producto:</strong> ${selectedPrdct.getPaidMethod()}</p>
-                            <p class="otros-detalles"><strong>Cantidad de productos actualmente disponibles:</strong> ${selectedPrdct.getStock()}</p>
                         </div>
                     </div>
 
@@ -66,11 +89,11 @@ document.addEventListener('DOMContentLoaded', async () => {
                         - retirar: [Envio, Local]
                         - metodo de pago (usando classe Product getPaidMethod(), ej: "paidMethod": ["efectivo"] o ["efectivo", "tarjeta"])
                     -->
-                    <div class="finalizar-compra">
+                    <div id="campos-prod"  class="completar-campos">
                         <!-- test de ajuste de width responsive (dnmyc) -->
                         <p> Lorem ipsum dolor sit, amet consectetur adipisicing elit. Facilis libero enim repellendus excepturi nesciunt cupiditate sapiente dignissimos cumque odit deleniti non dolores, quam tenetur recusandae reiciendis sint numquam iusto eius! </p>
                     </div>
-                </div>
+                </form>
             `;
         } else {
             compraContainer.innerHTML = '<p>Error al cargar el elemento seleccionado, intete despues o comuniquese con el soporte --> [support] </p>';

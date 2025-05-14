@@ -27,7 +27,7 @@
 - [x] Carga de productos
 - [x] Renderizado modular
 - [x] Filtros dinamicos
-- [x] Capacidad de register/login con logput y almacenar el usuario para iniciar sesion devuelta
+- [x] Capacidad de register/login con logout y almacenar el usuario para iniciar sesion de vuelta
 
 ### Contenido en desarrollo:
 - [ ] Carrito de compras
