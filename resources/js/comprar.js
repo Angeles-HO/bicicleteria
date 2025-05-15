@@ -61,11 +61,27 @@ document.addEventListener('DOMContentLoaded', async () => {
                                     ${color.color}
                                 </label>`).join('')}
                             </div>
-                            
                             <div class="cntrol-strock">
                                 <p class="otros-detalles">Cantidad de productos actualmente disponibles: ${selectedPrdct.getStock()}</p>
                                 <label>Cantidad:</label>
                                 <input type="number" id="cantidad" min="1" max="${selectedPrdct.getStock()}" value="1" required>
+                            </div>
+                            <div class="method-paid">
+                                <p class="otros-detalles">Metodos de Pago para este producto: ${selectedPrdct.getPaidMethod()}</p>
+                                ${selectedPrdct.getPaidMethod().length === 1 ? `
+                                <div class="one-paid-method">
+                                    <input type="radio" name="paid" value="${selectedPrdct.getPaidMethod[0]}" checked>
+                                    <label>${selectedPrdct.getPaidMethod()[0]}</label>
+                                </div>
+                                `:`
+                                <div class="varius-paid-method">
+                                    <p class="otros-detalles">Selecciona un metodo de pago:</p>
+                                    ${selectedPrdct.getPaidMethod().map(mthd => `
+                                        <input type="radio" name="paid" value="${mthd}">
+                                        <label>${mthd}</label>    
+                                    `)}
+                                </div>
+                                `}
                             </div>
                             <div class="method-envio">
                                 <label>Metodo de Envio:</label>
@@ -75,7 +91,6 @@ document.addEventListener('DOMContentLoaded', async () => {
                                     <option value="envio-domicilio">Envio a Domicilio</option>
                                 </select>
                             </div>
-                            <p class="otros-detalles">Metodos de Pago para este producto: ${selectedPrdct.getPaidMethod()}</p>
                             <ul class="otros-detalles"> 
                                 Lista de Precios:
                                 ${monedas.map((moneda, indxVal) => `<li class="lista-precio">${moneda}: $${productPrecio[indxVal]}</li>`).join('')} <!-- join('') para sacar las comas generadas por default jsjs -->

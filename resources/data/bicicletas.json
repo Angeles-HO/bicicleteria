@@ -19,7 +19,7 @@
       ],
       "etiquetas": ["montaña", "aventura", "ciclismo"],
       "paidMethod": ["efectivo", "tarjeta"],
-      "stock": 0,
+      "stock": 2,
       "imagen": "../../../../resources/imgs/mountain_bike_1.jpg",
       "descripcion": "Bicicleta de montaña"
     },
@@ -39,7 +39,7 @@
       ],
       "etiquetas": ["elite", "competencia", "carbono", "suspensión completa"],
       "paidMethod": ["tarjeta"],
-      "stock": 1,
+      "stock": 0,
       "imagen": "../../../../resources/imgs/mountain_bike_2.jpg",
       "descripcion": "Bicicleta de montaña de alta gama"
     }, 
