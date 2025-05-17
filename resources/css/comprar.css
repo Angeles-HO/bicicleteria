@@ -65,7 +65,7 @@ header {
 }
 
 /* datos que afecta a ambas cartas */
-#campos-prod {
+.producto-detalles {
   /* background-color: blue; (intercambiar con imagen del producto a comprar)*/
   color: #fff;
   border: solid 1px #949494;
@@ -76,7 +76,7 @@ header {
 }
 
 /* Seccion izq (foto, detalles del producto para verificar el estado) */
-.producto-detalles {
+#campos-prod {
   display: flex;
   flex-direction: column;
   align-items: center;
@@ -126,6 +126,6 @@ header {
 }
 
 /* Seccion derecha (rellenar y espicifacar ciertos datos dinamicos) */
-.completar-campos {
+#finalizar-prod {
 
 }

@@ -39,7 +39,6 @@ document.addEventListener('DOMContentLoaded', async () => {
         const monedas = selectedPrdct.getIsCAE(selectedPrdct)
         const productPrecio = monedas.map(monedaSlct => selectedPrdct.getPrecio(monedaSlct))
         
-
         if (selectedPrdct) {
             compraContainer.innerHTML = `
                 <form id="compra-container">
@@ -52,44 +51,18 @@ document.addEventListener('DOMContentLoaded', async () => {
                             <p class="otros-detalles">Producto a Comprar: ${selectedPrdct.getNombre()}</p>
                             <p class="otros-detalles">Modelo: ${selectedPrdct.getModelo()}</p>
                             <p class="otros-detalles">Marca: ${selectedPrdct.getMarca()}</p>
-                            <p class="otros-detalles">Elige un color:</p>
+                            <p class="otros-detalles">Colores Disponibles:</p>
                             <div class="color-options">
                                 ${selectedPrdct.getColores().map(color => 
-                                `<label class="color-option">
-                                    <input type="radio" name="color" value="${color.color}" required>
-                                    <span class="color-preview" style="background-color: ${color.codigo}"></span>
+                                `<label class="color-aviables">
                                     ${color.color}
                                 </label>`).join('')}
                             </div>
                             <div class="cntrol-strock">
                                 <p class="otros-detalles">Cantidad de productos actualmente disponibles: ${selectedPrdct.getStock()}</p>
-                                <label>Cantidad:</label>
-                                <input type="number" id="cantidad" min="1" max="${selectedPrdct.getStock()}" value="1" required>
                             </div>
                             <div class="method-paid">
                                 <p class="otros-detalles">Metodos de Pago para este producto: ${selectedPrdct.getPaidMethod()}</p>
-                                ${selectedPrdct.getPaidMethod().length === 1 ? `
-                                <div class="one-paid-method">
-                                    <input type="radio" name="paid" value="${selectedPrdct.getPaidMethod[0]}" checked>
-                                    <label>${selectedPrdct.getPaidMethod()[0]}</label>
-                                </div>
-                                `:`
-                                <div class="varius-paid-method">
-                                    <p class="otros-detalles">Selecciona un metodo de pago:</p>
-                                    ${selectedPrdct.getPaidMethod().map(mthd => `
-                                        <input type="radio" name="paid" value="${mthd}">
-                                        <label>${mthd}</label>    
-                                    `)}
-                                </div>
-                                `}
-                            </div>
-                            <div class="method-envio">
-                                <label>Metodo de Envio:</label>
-                                <select id="metodo-envio" required>
-                                    <option value="">Seleccione...</option>
-                                    <option value="retiro-local">Retiro en Local</option>
-                                    <option value="envio-domicilio">Envio a Domicilio</option>
-                                </select>
                             </div>
                             <ul class="otros-detalles"> 
                                 Lista de Precios:
@@ -104,9 +77,41 @@ document.addEventListener('DOMContentLoaded', async () => {
                         - retirar: [Envio, Local]
                         - metodo de pago (usando classe Product getPaidMethod(), ej: "paidMethod": ["efectivo"] o ["efectivo", "tarjeta"])
                     -->
-                    <div id="campos-prod"  class="completar-campos">
-                        <!-- test de ajuste de width responsive (dnmyc) -->
-                        <p> Lorem ipsum dolor sit, amet consectetur adipisicing elit. Facilis libero enim repellendus excepturi nesciunt cupiditate sapiente dignissimos cumque odit deleniti non dolores, quam tenetur recusandae reiciendis sint numquam iusto eius! </p>
+                    <div id="finalizar-prod"  class="producto-detalles">
+                        <div class="slct-clr-buy">
+                            <p>Selecciona el color del modelo:</p>
+                            ${selectedPrdct.getColores().map(color => 
+                            `<label class="color-aviables">
+                                <input type="radio" name="color" value="${color.color}" required>
+                                <span class="color-preview" style="background-color: ${color.codigo}"></span>
+                                ${color.color}
+                            </label>`).join('')}
+                        </div>
+                        <label for="cantidad">Cantidad:</label>
+                        <input type="number" id="cantidad" min="1" max="${selectedPrdct.getStock()}" value="1" required>
+                        ${selectedPrdct.getPaidMethod().length === 1 ? `
+                            <div class="one-paid-method">
+                                <label class="otros-detalles">Unico Metodo de pago disponible:</label>
+                                <input type="radio" name="paid" value="${selectedPrdct.getPaidMethod()[0]}" checked>
+                                <label>${selectedPrdct.getPaidMethod()[0]}</label>
+                            </div>
+                            `:`
+                            <div class="varius-paid-method">
+                                <p class="otros-detalles">Selecciona un metodo de pago:</p>
+                                ${selectedPrdct.getPaidMethod().map(mthd => `
+                                    <input type="radio" name="paid" value="${mthd}">
+                                    <label>${mthd}</label>    
+                                `).join('')}
+                            </div>
+                        `}
+                        <div class="method-envio">
+                            <label>Metodo de Envio:</label>
+                            <select id="metodo-envio" required>
+                                <option value="">Seleccione...</option>
+                                <option value="retiro-local">Retiro en Local</option>
+                                <option value="envio-domicilio">Envio a Domicilio</option>
+                            </select>
+                        </div>
                     </div>
                 </form>
             `;
