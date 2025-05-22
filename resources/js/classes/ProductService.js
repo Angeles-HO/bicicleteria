@@ -5,10 +5,18 @@ export class ProductService {
   static cache = null;
 
   static async loadProducts() {
+    //  loadProducts(source = "api")
     if (this.cache) return this.cache;
+
+    // const response = source === "api" ? "http://localhost:1337/api/productos" : "../../resources/data/bicicletas.json"
     const response = await fetch("../../resources/data/bicicletas.json");
+
+    // Integracion con llamadas a una API que puede ser local o remota, "API" http o "local" json.
+
     if (!response.ok) throw new Error('Error al cargar los productos');
+
     const data = await response.json();
+
     this.cache = data.map(categoria => ({
       idModelo: categoria.idModelo,
       modelo: categoria.modelo,
@@ -27,6 +35,7 @@ export class ProductService {
         categoria.modelo
       ))
     }));
+    
     return this.cache;
   }
 }

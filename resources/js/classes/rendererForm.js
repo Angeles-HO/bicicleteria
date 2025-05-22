@@ -18,7 +18,7 @@ export class rendererForm {
             <form id="compra-container">
                 ${this.renderProdCard()}
                 ${this.renderProdOptCampos()}
-                <button type="submit" class="btn-finalizar">Finalizar Compra</button>
+                <button type="submit" id="btn-finish-him" class="btn-finalizar">Finalizar Compra</button>
             </form>
         `;
     }
@@ -79,10 +79,10 @@ export class rendererForm {
             <div class="method-paid">
                 <p class="otros-detalles">Metodos de Pago para este producto: ${this.selectedPrdct.getPaidMethod()}</p>
             </div>
-            <ul class="otros-detalles"> 
+            <span class="otros-detalles"> 
                 Lista de Precios:
-                ${this.monedas.map((moneda, indxVal) => `<li class="lista-precio">${moneda}: $${this.productPrecio[indxVal]}</li>`).join('')} <!-- join('') para sacar las comas generadas por default jsjs -->
-            </ul>
+                ${this.monedas.map((moneda, indxVal) => `<ul class="lista-precio">- ${moneda}: $${this.productPrecio[indxVal]}</ul>`).join('')} <!-- join('') para sacar las comas generadas por default jsjs -->
+            </span>
         `
     }
 
@@ -137,7 +137,6 @@ export class rendererForm {
             <div class="method-envio">
                 <label>Metodo de Envio:</label>
                 <select id="metodo-envio" required>
-                    <option value="">Seleccione...</option>
                     <option value="retiro-local">Retiro en Local</option>
                     <option value="envio-domicilio">Envio a Domicilio</option>
                 </select>
