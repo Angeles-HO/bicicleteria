@@ -10,14 +10,17 @@ export class rendererForm {
         this.monedas = this.selectedPrdct.getIsCAE(this.selectedPrdct)
         this.productPrecio = this.monedas.map(monedaSlct => this.selectedPrdct.getPrecio(monedaSlct))
     } 
+    
 
     // render 
     /* Render 2 secciones [detalles del producto y completar campos] */
     initRenderForm() {
         return this.container.innerHTML = `
             <form id="compra-container">
-                ${this.renderProdCard()}
-                ${this.renderProdOptCampos()}
+                <div id="encapsular">
+                    ${this.renderProdCard()}
+                    ${this.renderProdOptCampos()}
+                </div>
                 <button type="submit" id="btn-finish-him" class="btn-finalizar">Finalizar Compra</button>
             </form>
         `;
@@ -91,6 +94,7 @@ export class rendererForm {
             <div id="finalizar-prod" class="producto-detalles">
                 ${this.renderSlctProdClrs()}
                 ${this.renderSlctProdStock()}
+                ${this.renderSlctPaid()}
                 ${this.renderSlctProdEnvio()}
             </div>
         `
@@ -132,6 +136,17 @@ export class rendererForm {
         `
     }
 
+    renderSlctPaid() {
+        return `
+            <div>
+                <select id="pagar-en" required>
+                    <option value="local">pago en el local</option>
+                    <option value="rappi">En un tercero</option>
+                </select>
+            </div>
+        `
+    }
+
     renderSlctProdEnvio() {
         return `
             <div class="method-envio">
@@ -151,5 +166,9 @@ export class rendererForm {
             )?.productos.find(producto => 
                 producto.getId() === productId
         );
+    }
+
+    rendererPrecioFinal() {
+        
     }
 }
