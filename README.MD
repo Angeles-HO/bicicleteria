@@ -1,7 +1,7 @@
 # Proyecto: Bicicleteria
 
 **Desarrollo:** Aplicacion WEB para mostrar productos de una tienda de bicicletas.
-**Metodologia aplicada *(Personal)***:*Desarrollo Iterativo Modular con Refactorizacion Progresiva*.
+**Metodologia aplicada**:*Desarrollo Iterativo Modular con Refactorizacion Progresiva*.
 
 # Estructura de la Metodologia:
 
