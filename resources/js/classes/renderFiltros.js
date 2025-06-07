@@ -1,9 +1,8 @@
 export class renderFiltros {
-  constructor(filtroModelo, filtroPago, filtroCurrency, onFiltroChange, renderer) {
+  constructor(filtroModelo, filtroPago, filtroCurrency, renderer) {
     this._filtroModelo = filtroModelo,
     this._filtroPago = filtroPago,
     this._filtroCurrency = filtroCurrency,
-    this._onFiltroChange = onFiltroChange,
     this.renderer = renderer
   }
 
@@ -11,9 +10,10 @@ export class renderFiltros {
     this.loadOptionsModel(data);
     this.loadOptionsPago(data);
     this.loadOptionsCurrency(data);
-    this._filtroModelo.addEventListener('change', this._onFiltroChange);
-    this._filtroPago.addEventListener('change', this._onFiltroChange);
-    this._filtroCurrency.addEventListener('change', this._onFiltroChange);
+    this._filtroModelo.addEventListener('change', () => this.testingMethod(data));
+    this._filtroPago.addEventListener('change', () => this.testingMethod(data));
+    this._filtroCurrency.addEventListener('change', () => this.testingMethod(data));
+    this.testingMethod(data);
   }
 
   loadOptionsModel(data) {
@@ -100,5 +100,4 @@ export class renderFiltros {
     // Renderiza los productos filtrados en la pagina
     this.renderer.rendererMain(productosFiltrados);
   }
-
 }

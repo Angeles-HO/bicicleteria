@@ -8,8 +8,8 @@ export class ProductService {
     //  loadProducts(source = "api")
     if (this.cache) return this.cache;
 
-    // const response = source === "api" ? "http://localhost:1337/api/productos" : "../../resources/data/bicicletas.json"
-    const response = await fetch("/api/productos");
+    // const response = source === "api" ? "/api/productos" : "../../resources/data/bicicletas.json"
+    const response = await fetch("../../resources/data/bicicletas.json");
 
     // Integracion con llamadas a una API que puede ser local o remota, "API" http o "local" json.
 
