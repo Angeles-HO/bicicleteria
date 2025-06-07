@@ -15,13 +15,13 @@ bicicleteria
 │       └── store.html [2.54 KB]
 ├── resources/
 │   ├── css/
-│   │   ├── comprar.css [2.82 KB]
+│   │   ├── comprar.css [3.87 KB]
 │   │   ├── home.css [1.65 KB]
 │   │   ├── login.css [2.78 KB]
 │   │   ├── register.css [2.78 KB]
 │   │   └── tienda.css [8.18 KB]
 │   ├── data/
-│   │   └── bicicletas.json [10.29 KB]
+│   │   └── bicicletas.json [10.30 KB]
 │   ├── imgs/
 │   │   ├── background_1.jpg [784.46 KB]
 │   │   ├── bicicleta_bmx_1.jpg [80.01 KB]
@@ -35,19 +35,20 @@ bicicleteria
 │   └── js/
 │       ├── classes/
 │       │   ├── AuthenticateService.js [845 bytes]
-│       │   ├── ProductService.js [925 bytes]
+│       │   ├── ProductService.js [1.17 KB]
 │       │   ├── product.js [2.58 KB]
 │       │   ├── renderFiltros.js [2.62 KB]
-│       │   ├── rendererForm.js [5.83 KB]
+│       │   ├── rendererForm.js [7.46 KB]
 │       │   ├── rendererProducts.js [6.76 KB]
 │       │   ├── storage.js [2.25 KB]
 │       │   └── user.js [537 bytes]
-│       ├── comprar.js [376 bytes]
+│       ├── comprar.js [1.50 KB]
 │       ├── home.js [3.38 KB]
 │       ├── login.js [1.48 KB]
 │       ├── register.js [1.55 KB]
 │       └── tienda.js [3.87 KB]
-└── README.MD [1.65 KB]
+├── README.MD [1.65 KB]
+└── folder-structure.md [2.24 KB]
 ```
 
 
@@ -56,9 +57,9 @@ bicicleteria
 ```plaintext
 Root Folder: bicicleteria
 Total Folders: 12
-Total Files: 34
+Total Files: 35
 File Types:
-  - .md Files: 1
+  - .md Files: 2
   - .html Files: 5
   - .css Files: 5
   - .json Files: 1
@@ -66,8 +67,8 @@ File Types:
   - .png Files: 2
   - .js Files: 13
 Largest File: carrito_compras.png [1.28 MB]
-Smallest File: comprar.js [376 bytes]
-Total Project Size: 2.33 MB
+Smallest File: user.js [537 bytes]
+Total Project Size: 2.34 MB
 Ignored Files and Folders:
   - None
 ```

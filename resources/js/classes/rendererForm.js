@@ -96,6 +96,7 @@ export class rendererForm {
                 ${this.renderSlctProdStock()}
                 ${this.renderSlctPaid()}
                 ${this.renderSlctProdEnvio()}
+                ${this.calcularPrecioFinal()}
             </div>
         `
     }
@@ -141,8 +142,12 @@ export class rendererForm {
             <div>
                 <select id="pagar-en" required>
                     <option value="local">pago en el local</option>
-                    <option value="rappi">En un tercero</option>
+                    <option value="tercero">En un tercero</option>
                 </select>
+            </div>
+            <div id="extra-pago-tercero" style="display:none; margin-top:10px;">
+                <label for="datos-tercero">Datos para pago en tercero (solo si es tarjeta):</label>
+                <input type="text" id="datos-tercero" name="datos-tercero" placeholder="Nombre del tercero o referencia">
             </div>
         `
     }
@@ -168,7 +173,21 @@ export class rendererForm {
         );
     }
 
-    rendererPrecioFinal() {
-        
+    calcularPrecioFinal() {
+        const cantidadInput = document.getElementById('cantidad');
+        const cantidad = cantidadInput ? parseInt(cantidadInput.value, 10) : 1;
+        // Obtener moneda seleccionada (por defecto la primera)
+        const moneda = this.monedas && this.monedas.length > 0 ? this.monedas[0] : null;
+        let precioUnitario = moneda ? this.selectedPrdct.getPrecio(moneda) : 0;
+        // Obtener metodo de envio seleccionado
+        const metodoEnvioSelect = document.getElementById('metodo-envio');
+        const metodoEnvio = metodoEnvioSelect ? metodoEnvioSelect.value : 'retiro-local';
+        let total = precioUnitario * cantidad;
+        // Si el envio es a domicilio, aplicar recargo del 5%
+        if (metodoEnvio === 'envio-domicilio') {
+            total = total * 1.05;
+        }
+        // Redondear a 2 decimales
+        return total;
     }
 }

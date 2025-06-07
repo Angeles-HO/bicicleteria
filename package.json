@@ -1,0 +1,26 @@
+{
+  "name": "bicicleteria",
+  "version": "1.0.0",
+  "description": "Aplicacion WEB para mostrar productos de una tienda de bicicletas",
+  "main": "index.js",
+  "type": "module",
+  "scripts": {
+    "start": "node server/api.js",
+    "dev": "nodemon server/api.js",
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/Angeles-HO/bicicleteria.git"
+  },
+  "keywords": [],
+  "author": "Angeles_HO",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/Angeles-HO/bicicleteria/issues"
+  },
+  "homepage": "https://github.com/Angeles-HO/bicicleteria#readme",
+  "dependencies": {
+    "express": "^5.1.0"
+  }
+}
