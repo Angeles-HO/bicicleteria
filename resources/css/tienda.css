@@ -9,6 +9,9 @@
 body {
   background-color: rgba(56, 57, 58, 1);
   margin-bottom: 0;
+  max-width: 100%;
+  overflow-x: hidden; /* Evita el scroll horizontal */
+  width: 100%;
 }
 
 /* Header con fondo semitransparente y texto centrado */
@@ -20,7 +23,6 @@ header {
   padding: 22px;
   text-align: center;
   width: 100%;
-  
 }
 
 /* Navegacion de la tienda, distribuye elementos a los extremos */
@@ -77,16 +79,6 @@ select {
   border-radius: 5px;
 }
 
-/* Grid para organizar los productos, adaptable al tamaño de pantalla */
-.productos-grid {
-  display: inline-flex;
-  grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
-  gap: 20px;
-  padding: 20px;
-  width: max-content;
-  height: max-content;
-}
-
 /* Tarjeta de producto con fondo degradado y sombra
 */
 .producto-card {
@@ -99,6 +91,16 @@ select {
   flex-direction: column;
   justify-content: space-between;
   width: 16svw;
+}
+
+/* Grid para organizar los productos, adaptable al tamaño de pantalla */
+.productos-grid {
+  display: inline-flex;
+  grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
+  gap: 20px;
+  padding: 20px;
+  width: 100%;
+  height: max-content;
 }
 
 /* Efecto de hover para la tarjeta, se eleva un poco */

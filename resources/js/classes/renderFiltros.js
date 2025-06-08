@@ -10,10 +10,10 @@ export class renderFiltros {
     this.loadOptionsModel(data);
     this.loadOptionsPago(data);
     this.loadOptionsCurrency(data);
-    this._filtroModelo.addEventListener('change', () => this.testingMethod(data));
-    this._filtroPago.addEventListener('change', () => this.testingMethod(data));
-    this._filtroCurrency.addEventListener('change', () => this.testingMethod(data));
-    this.testingMethod(data);
+    this._filtroModelo.addEventListener('change', () => this.initMethodFilters(data));
+    this._filtroPago.addEventListener('change', () => this.initMethodFilters(data));
+    this._filtroCurrency.addEventListener('change', () => this.initMethodFilters(data));
+    this.initMethodFilters(data);
   }
 
   loadOptionsModel(data) {
@@ -63,41 +63,50 @@ export class renderFiltros {
     }
   }
 
-  testingMethod(data) {
-    // Obtiene los valores seleccionados en los filtros
-    const modeloSeleccionado = this._filtroModelo.value; // Valor seleccionado en el filtro de modelo
-    const metodoPagoSeleccionado = this._filtroPago.value; // Valor seleccionado en el filtro de metodo de pago
-    const currencyType = this._filtroCurrency.value;
+  initMethodFilters(data) {
+    const filteredProducts = this.filterProds(data);
+    this.renderer.rendererMain(filteredProducts);
+  }
 
-    // Filtra las categorias y sus productos segun los filtros seleccionados
-    const productosFiltrados = data.map(categoria => {
-      // Filtra los productos de la categoria por metodo de pago si se selecciono uno especifico
-      let productos = categoria.productos;
-      
-      if (metodoPagoSeleccionado !== 'todos') {
-        productos = productos.filter(producto => 
-          producto.paidMethod.includes(metodoPagoSeleccionado) // Incluye solo los productos que soportan el metodo de pago seleccionado
-        );
-      }
+  filterProds(data) {
+    return data
+    .map(categoria => this.filterCategoryProducts(categoria))
+    .filter(categoria => categoria !== null && categoria.productos.length > 0); // no muestra categorias cuyo productos filtrados sean sean <= a 0.
+  }
 
-      if (currencyType !== 'todos') {
-        productos = productos.filter(producto =>
-          typeof producto.getIsCAE === 'function' && producto.getIsCAE(producto).includes(currencyType)
-        );
-      }
+  filterCategoryProducts(categoria) {
+    const { _filtroModelo, _filtroPago, _filtroCurrency } = this;
+    const modeloSeleccionado = _filtroModelo.value;
+    const metodoPagoSeleccionado = _filtroPago.value;
+    const currencyType = _filtroCurrency.value;
 
-      // Verifica si la categoria debe incluirse segun el modelo seleccionado
-      if (modeloSeleccionado !== 'todos' && categoria.idModelo !== modeloSeleccionado) {
-        return null; // Excluye esta categoria si no coincide con el modelo seleccionado
-      }
+    // Filtrar por modelo primero.
+    if (modeloSeleccionado !== 'todos' && categoria.idModelo !== modeloSeleccionado) {
+      return null;
+    }
 
-      // Devuelve una copia de la categoria con los productos filtrados
-      return {
-        ...categoria, // Copia las propiedades de la categoria original
-        productos: productos // Incluye solo los productos filtrados
-      };
-    }).filter(categoria => categoria !== null && categoria.productos.length > 0); // Excluye categorias vacias o nulas
-    // Renderiza los productos filtrados en la pagina
-    this.renderer.rendererMain(productosFiltrados);
+    let productos = [...categoria.productos];
+
+    // Aplicar filtros en cascada
+    productos = this.filterByPaymentMethod(productos, metodoPagoSeleccionado);
+    productos = this.filterByCurrencyType(productos, currencyType);
+
+    return productos.length > 0 
+      ? { ...categoria, productos } 
+      : null;
+  }
+
+  filterByPaymentMethod(productos, metodoPagoSeleccionado) {
+    return metodoPagoSeleccionado !== 'todos'
+      ? productos.filter(p => p.paidMethod.includes(metodoPagoSeleccionado))
+      : productos;
+  }
+
+  filterByCurrencyType(productos, currencyType) {
+    return currencyType !== 'todos'
+      ? productos.filter(p => 
+          typeof p.getIsCAE === 'function' && 
+          p.getIsCAE(p).includes(currencyType))
+      : productos;
   }
 }
