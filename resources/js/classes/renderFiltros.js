@@ -1,17 +1,20 @@
 export class renderFiltros {
-  constructor(filtroModelo, filtroPago, filtroCurrency, renderer) {
+  constructor(filtroModelo, filtroPago, filtroCurrency, filtroColor, renderer) {
     this._filtroModelo = filtroModelo,
     this._filtroPago = filtroPago,
     this._filtroCurrency = filtroCurrency,
+    this._filtroColor = filtroColor,
     this.renderer = renderer
   }
 
   inicializate(data) {
     this.loadOptionsModel(data);
     this.loadOptionsPago(data);
+    this.loadOptionsClrs(data);
     this.loadOptionsCurrency(data);
     this._filtroModelo.addEventListener('change', () => this.initMethodFilters(data));
     this._filtroPago.addEventListener('change', () => this.initMethodFilters(data));
+    this._filtroColor.addEventListener('change', () => this.initMethodFilters(data));
     this._filtroCurrency.addEventListener('change', () => this.initMethodFilters(data));
     this.initMethodFilters(data);
   }
@@ -24,6 +27,23 @@ export class renderFiltros {
       modelosUnicos.forEach(modelo => {
         // Agrega cada modelo como una opcion en el filtro de modelo
        this._filtroModelo.innerHTML += `<option value="${modelo}">${modelo}</option>`;
+      });
+    }
+  }
+
+  loadOptionsClrs(data) {
+    if (this._filtroColor.innerHTML === '') {
+      const coloresUnicos = new Set(); // Crea un conjunto para almacenar colores unicos
+      data.forEach(cat => {
+        // Itera sobre cada categoria y sus productos
+        cat.productos.forEach(prod => {
+          // Agrega cada color del producto al conjunto
+          prod.colores.forEach(color => coloresUnicos.add(color));
+        });
+      });
+      coloresUnicos.forEach(color => {
+        // Agrega cada color como una opcion en el filtro de color
+        this._filtroColor.innerHTML += `<option value="${color}">${color}</option>`;
       });
     }
   }
@@ -75,10 +95,11 @@ export class renderFiltros {
   }
 
   filterCategoryProducts(categoria) {
-    const { _filtroModelo, _filtroPago, _filtroCurrency } = this;
+    const { _filtroModelo, _filtroPago, _filtroColor, _filtroCurrency } = this;
     const modeloSeleccionado = _filtroModelo.value;
     const metodoPagoSeleccionado = _filtroPago.value;
     const currencyType = _filtroCurrency.value;
+    const colorSeleccionado = _filtroColor.value;
 
     // Filtrar por modelo primero.
     if (modeloSeleccionado !== 'todos' && categoria.idModelo !== modeloSeleccionado) {
@@ -90,10 +111,33 @@ export class renderFiltros {
     // Aplicar filtros en cascada
     productos = this.filterByPaymentMethod(productos, metodoPagoSeleccionado);
     productos = this.filterByCurrencyType(productos, currencyType);
+    productos = this.filterByColor(productos, colorSeleccionado);
 
-    return productos.length > 0 
-      ? { ...categoria, productos } 
+    return productos.length > 0
+      ? { ...categoria, productos }
       : null;
+  }
+
+  filterByColor(productos, colorSeleccionado) {
+    if (colorSeleccionado === 'todos' || !productos || !productos.length) {
+      return productos;
+    }
+
+    const colorBuscado = colorSeleccionado.toLowerCase().trim();
+
+    return productos.filter(producto => {
+      // Verificar si el producto tiene colores
+      if (!producto.colores || !producto.colores.length) return false;
+
+      // Buscar si alguno de los colores coincide
+      return producto.colores.some(colorObj => {
+        // Verificar que el objeto color tenga la propiedad 'color'
+        if (!colorObj || !colorObj.color) return false;
+
+        // Comparar colores normalizados
+        return colorObj.color.toLowerCase().trim() === colorBuscado;
+      });
+    })
   }
 
   filterByPaymentMethod(productos, metodoPagoSeleccionado) {

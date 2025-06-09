@@ -36,11 +36,13 @@ function setupFilters(data) {
   const filtroModelo = document.getElementById('filtro-modelo');
   const filtroPago = document.getElementById('method-paid-container');
   const filtroCurrency = document.getElementById('filtro-currency');
+  const filtroColor = document.getElementById('filtro-color');
   // Instancia la clase renderFiltros y delega la logica de filtrado y renderizado
   const filtrosManager = new renderFiltros(
     filtroModelo,
     filtroPago,
     filtroCurrency,
+    filtroColor,
     renderer // pasar el renderer para que la clase pueda renderizar
   );
 
