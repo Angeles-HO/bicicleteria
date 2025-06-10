@@ -49,7 +49,7 @@ export class Product {
         return this._stock;
     }
 
-    getIsCAE(p) {
+    getIsCAE() {
         return this._precio.map(a => a.moneda);
     }
 

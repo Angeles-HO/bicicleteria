@@ -1,21 +1,30 @@
 export class renderFiltros {
-  constructor(filtroModelo, filtroPago, filtroCurrency, filtroColor, renderer) {
+  constructor(filtroModelo, filtroPago, filtroCurrency, filtroColor, isPressedFilterButton, renderer) {
     this._filtroModelo = filtroModelo,
     this._filtroPago = filtroPago,
     this._filtroCurrency = filtroCurrency,
     this._filtroColor = filtroColor,
+    this._isPressedFilterButton = isPressedFilterButton,
     this.renderer = renderer
   }
 
   inicializate(data) {
+    // Siempre carga las opciones
     this.loadOptionsModel(data);
     this.loadOptionsPago(data);
     this.loadOptionsClrs(data);
     this.loadOptionsCurrency(data);
-    this._filtroModelo.addEventListener('change', () => this.initMethodFilters(data));
-    this._filtroPago.addEventListener('change', () => this.initMethodFilters(data));
-    this._filtroColor.addEventListener('change', () => this.initMethodFilters(data));
-    this._filtroCurrency.addEventListener('change', () => this.initMethodFilters(data));
+
+    if (this._isPressedFilterButton) {
+      this._isPressedFilterButton.addEventListener('click', () => {
+        this.initMethodFilters(data);
+      });
+    } else {
+      this._filtroModelo.addEventListener('change', () => this.initMethodFilters(data));
+      this._filtroPago.addEventListener('change', () => this.initMethodFilters(data));
+      this._filtroColor.addEventListener('change', () => this.initMethodFilters(data));
+      this._filtroCurrency.addEventListener('change', () => this.initMethodFilters(data));
+    }
     this.initMethodFilters(data);
   }
 

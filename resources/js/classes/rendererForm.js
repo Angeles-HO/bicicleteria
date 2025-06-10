@@ -57,19 +57,19 @@ export class rendererForm {
     renderProdTxt() {
         return `
             <p class="otros-detalles">Producto a Comprar: ${this.selectedPrdct.getNombre()}</p>
-            <p class="otros-detalles">Modelo: ${this.selectedPrdct.getModelo()}</p>
-            <p class="otros-detalles">Marca: ${this.selectedPrdct.getMarca()}</p>
+            <p class="otros-detalles"><strong>Modelo</strong>: ${this.selectedPrdct.getModelo()}</p>
+            <p class="otros-detalles"><strong>Marca</strong>: ${this.selectedPrdct.getMarca()}</p>
         `
     }
 
     renderProdClrs() {
         return `
-            <p class="otros-detalles">Colores Disponibles:</p>
+            <p class="otros-detalles"><strong>Colores Disponibles:</strong></p>
             <div class="color-options">
                 ${this.selectedPrdct.getColores().map(color => 
                 `<label class="color-aviables">
                     ${color.color}
-                </label>`).join('')}
+                </label>`).join('|')}
             </div>
         `
     }
@@ -77,10 +77,10 @@ export class rendererForm {
     renderProdVarius() {
         return `
             <div class="cntrol-strock">
-            <p class="otros-detalles">Cantidad de productos actualmente disponibles: ${this.selectedPrdct.getStock()}</p>
+            <p class="otros-detalles"><strong>Stock:</strong> ${this.selectedPrdct.getStock()}</p>
             </div>
             <div class="method-paid">
-                <p class="otros-detalles">Metodos de Pago para este producto: ${this.selectedPrdct.getPaidMethod()}</p>
+                <p class="otros-detalles"><strong>Metodos de Pago para este producto:</strong> ${this.selectedPrdct.getPaidMethod()}</p>
             </div>
             <span class="otros-detalles"> 
                 Lista de Precios:
@@ -145,7 +145,7 @@ export class rendererForm {
                     <option value="tercero">En un tercero</option>
                 </select>
             </div>
-            <div id="extra-pago-tercero" style="display:none; margin-top:10px;">
+            <div id="extra-pago-tercero" style="display:none;">
                 <label for="datos-tercero">Datos para pago en tercero (solo si es tarjeta):</label>
                 <input type="text" id="datos-tercero" name="datos-tercero" placeholder="Nombre del tercero o referencia">
             </div>
@@ -174,20 +174,14 @@ export class rendererForm {
     }
 
     calcularPrecioFinal() {
-        const cantidadInput = document.getElementById('cantidad');
-        const cantidad = cantidadInput ? parseInt(cantidadInput.value, 10) : 1;
-        // Obtener moneda seleccionada (por defecto la primera)
-        const moneda = this.monedas && this.monedas.length > 0 ? this.monedas[0] : null;
-        let precioUnitario = moneda ? this.selectedPrdct.getPrecio(moneda) : 0;
-        // Obtener metodo de envio seleccionado
-        const metodoEnvioSelect = document.getElementById('metodo-envio');
-        const metodoEnvio = metodoEnvioSelect ? metodoEnvioSelect.value : 'retiro-local';
-        let total = precioUnitario * cantidad;
-        // Si el envio es a domicilio, aplicar recargo del 5%
-        if (metodoEnvio === 'envio-domicilio') {
-            total = total * 1.05;
-        }
-        // Redondear a 2 decimales
-        return total;
+        const moneda = this.productPrecio[0];
+        return ` 
+            <span id="teeeeeeeest" class="precio-final">Precio Total:
+                <br>
+                <span id="precio-total">$${moneda}</span>
+                <br>
+                <span id="text-recargo" style="display:none;font-size:0.6em;">(incluye recargo por envio)</span>
+            </span>
+        `;
     }
 }

@@ -110,6 +110,7 @@ header {
 .btn-finalizar {
   margin-top: 1rem;
   width: 20%;
+  height: calc(2.5rem + 0.5vw);
   font-size: 1rem;
 }
 
@@ -152,18 +153,13 @@ header {
   align-items: center;
 }
 
-#section-prod-image,
-.mas-detalles {
-  background-color: rgba(25, 24, 24, 0.21);
-  border-radius: 8px;
-  width: 100%;
-}
+
 
 #section-prod-image {
   display: flex;
   justify-content: center;
   position: relative;
-  overflow: visible;
+  overflow: hidden;
 }
 
 .prod-img {
