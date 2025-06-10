@@ -19,25 +19,33 @@ document.addEventListener('DOMContentLoaded', async () => {
     const precioTotal = document.getElementById('precio-total');
     const metodoEnvio = document.getElementById('metodo-envio');
     const txtRecargo = document.getElementById('text-recargo');
+    const precio = rndrForm.productPrecio[0];
+    const sumXcantidad = document.getElementById('cantidad')
+    const efectivo3ros = document.getElementById('radios-pago-efectivo-3ros')
+    const tarjeta3ros = document.getElementById('radios-pago-tarjeta-3ros');
 
     // Ayuda para manipulacion de DOM con codigo limpio
-    const domHandler = new DOMhandler(selectPago, pago3ro, radios);
+    const domHandler = new DOMhandler(selectPago, pago3ro, radios, precioTotal, metodoEnvio, txtRecargo, precio, sumXcantidad, efectivo3ros, tarjeta3ros);
 
     if(selectPago && pago3ro && radios.length) {
         selectPago.addEventListener('change', domHandler.checkShowExtra());
         radios.forEach(r => r.addEventListener('change', domHandler.checkShowExtra()));
     }
-    
+
     if (precioTotal && metodoEnvio && txtRecargo) {
         metodoEnvio.addEventListener('change', function() {
-            const precio = rndrForm.productPrecio[0];
-            const calculoRecargo = (precio / 100) * 2; // Ejemplo de recargo del 10%
-            const envio = this.value === 'retiro-local' ? 0 : calculoRecargo; // Ejemplo de costo de envio
-            const total = precio + envio;
-            domHandler.toggleRecargoDisplay(this.value !== 'retiro-local');
-            domHandler.updatePrecioTotal(total, precio, envio);
+            domHandler.rechargeSystem();
         });
     }
+
+    if (sumXcantidad) {
+        sumXcantidad.addEventListener('change', function() {
+            domHandler.rechargeSystem();
+        });
+    }
+
+    
+    
 
     // Alerta finalizar compra
     const msgSccs = document.getElementById('compra-container');

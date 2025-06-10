@@ -149,6 +149,21 @@ export class rendererForm {
                 <label for="datos-tercero">Datos para pago en tercero (solo si es tarjeta):</label>
                 <input type="text" id="datos-tercero" name="datos-tercero" placeholder="Nombre del tercero o referencia">
             </div>
+            <div class="radios-pago-tarjeta-3ros" style="display:none;">
+                <select id="pago-para-tarjeta" required>
+                    <option value="efectivo">Efectivo</option>
+                    <option value="tarjeta-debito">Tarjeta de Debito</option>
+                    <option value="tarjeta-credito">Tarjeta de Credito</option>
+                </select>
+            </div>
+            <div class="radios-pago-efectivo-3ros" style="display:none;">
+                select id="pago-para-efectivo" required>
+                    <option value="efectivo">Efectivo</option>
+                    <option value="transferencia">Transferencia</option>
+                    <option value="mercado-pago">Mercado Pago</option>
+                    <option value="paypal">PayPal</option>
+                </select>
+            </div>
         `
     }
 
