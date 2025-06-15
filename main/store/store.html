@@ -4,11 +4,10 @@
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Tienda de Bicicletas</title>
-  <script type="module" src="../../resources/js/tienda.js"></script>
-  <script type="module" src="../../resources/js/classes/product.js"></script>
-  <script type="module" src="../../resources/js/classes/ProductService.js"></script>
-  <script type="module" src="../../resources/js/classes/rendererProducts.js"></script>
-  <script type="module" src="../../resources/js/classes/pagination.js"></script>
+  <script type="module" src="../../resources/js/scripts/tienda.js"></script>
+  <script type="module" src="../../resources/js/classes/models/Bicicleta.js"></script>
+  <script type="module" src="../../resources/js/classes/services/ProductService.js"></script>
+  <script type="module" src="../../resources/js/classes/ui/rendererProducts.js"></script>
   <link rel="stylesheet" href="../../resources/css/tienda.css">
 </head>
 <body>
@@ -23,17 +22,15 @@
   <main>
     <div class="filtros">
       <select id="filtro-modelo" class="filtro-select">
-        <option value="todos"><p class="emojis-filtros">🚲</p>Todos los modelos</option>
-        <option value="MTB">Mountain Bike</option>
-        <option value="BMX">BMX Freestyle</option> 
+        <option value="todos">Todos los modelos</option>
       </select>
       <select id="method-paid-container" class="filtro-select">
-        <option value="todos"><p class="emojis-filtros">💳</p>Todos los metodos de pago</option>
+        <option value="todos">Todos los metodos de pago</option>
         <option value="efectivo">Efectivo</option>
         <option value="tarjeta">tarjeta</option>
       </select>
       <select id="filtro-color" class="filtro-select">
-        <option value="todos"><p class="emojis-filtros">🎨</p>Todos los colores</option>
+        <option value="todos">Todos los colores</option>
         <option value="rojo">Rojo</option>
         <option value="azul">Azul</option>
         <option value="verde">Verde</option>
@@ -41,18 +38,18 @@
         <option value="negro">Negro</option>
       </select>
       <select id="filtro-precio" class="filtro-select">
-        <option value="todos"><p class="emojis-filtros">💲</p>Todos los precios</option>
+        <option value="todos">Todos los precios</option>
         <option value="bajo">Menos de $500</option>
         <option value="medio">$500 - $1000</option>
         <option value="alto">Mas de $1000</option>
       </select>
       <select id="filtro-currency" class="filtro-select">
-        <option value="todos"><p class="emojis-filtros">💱</p>Moneda</option>
+        <option value="todos">Moneda</option>
         <option value="USD">USD</option>
         <option value="ARS">ARS</option>
         <option value="EUR">EUR</option>
       </select>
-      <button id="btn-filtrar" class="filtro-select">🔍 Filtrar</button>
+      <button id="btn-filtrar" class="filtro-select">Filtrar</button>
     </div>
     
     <div class="productos">

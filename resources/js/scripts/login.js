@@ -1,4 +1,4 @@
-import { Storage } from "../js/classes/storage.js"
+import { Storage } from "../classes/services/storage.js";
 
 document.addEventListener('DOMContentLoaded', () => {
     const formulario = document.querySelector('.login-form');

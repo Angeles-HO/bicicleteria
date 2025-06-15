@@ -1,17 +1,27 @@
-import { Storage } from '../../js/classes/storage.js';
+import { Storage } from '../services/storage.js';
+import { Precio } from '../models/Precio.js';
 
 export class rendererForm {
     constructor(product, containerId) {
         this.product = product,
-        this.container = document.getElementById(containerId)
-        this.productId = Storage.get('selectedProductId');
-        this.productModelo = Storage.get('selectedProductModelo');
-        this.selectedPrdct = this.findPrdct(this.product, this.productModelo, this.productId)
-        this.monedas = this.selectedPrdct.getIsCAE(this.selectedPrdct)
-        this.productPrecio = this.monedas.map(monedaSlct => this.selectedPrdct.getPrecio(monedaSlct))
+        this.container = document.getElementById(containerId),
+        this.productId = Storage.get('selectedProductId'),
+        this.productModelo = Storage.get('selectedProductModelo'),
+        this.selectedPrdct = this.findPrdct(this.product, this.productModelo, this.productId),
+        this.monedas = this.selectedPrdct.getIsCAE(),
+        this.productPrecio = this.monedas.map(moneda => {
+          const precio = this.selectedPrdct.getPrecio(moneda);
+          const descuento = this.selectedPrdct.getDescuento(moneda);
+          const region = this.selectedPrdct.getRegion(moneda);
+          return new Precio({
+            moneda,
+            precio,
+            descuento,
+            region
+          });
+        });
     } 
     
-
     // render 
     /* Render 2 secciones [detalles del producto y completar campos] */
     initRenderForm() {
@@ -69,23 +79,8 @@ export class rendererForm {
                 ${this.selectedPrdct.getColores().map(color => 
                 `<label class="color-aviables">
                     ${color.color}
-                </label>`).join('|')}
+                </label>`).join('')}
             </div>
-        `
-    }
-
-    renderProdVarius() {
-        return `
-            <div class="cntrol-strock">
-            <p class="otros-detalles"><strong>Stock:</strong> ${this.selectedPrdct.getStock()}</p>
-            </div>
-            <div class="method-paid">
-                <p class="otros-detalles"><strong>Metodos de Pago para este producto:</strong> ${this.selectedPrdct.getPaidMethod()}</p>
-            </div>
-            <span class="otros-detalles"> 
-                Lista de Precios:
-                ${this.monedas.map((moneda, indxVal) => `<ul class="lista-precio">- ${moneda}: $${this.productPrecio[indxVal]}</ul>`).join('')} <!-- join('') para sacar las comas generadas por default jsjs -->
-            </span>
         `
     }
 
@@ -188,15 +183,37 @@ export class rendererForm {
         );
     }
 
-    calcularPrecioFinal() {
-        const moneda = this.productPrecio[0];
-        return ` 
-            <span id="teeeeeeeest" class="precio-final">Precio Total:
-                <br>
-                <span id="precio-total">$${moneda}</span>
-                <br>
-                <span id="text-recargo" style="display:none;font-size:0.6em;">(incluye recargo por envio)</span>
+    renderProdVarius() {
+        const preciosHTML = this.productPrecio.map(pre => {
+            return `<li class="lista-precio">- ${pre.getMoneda()}: ${pre.getMonto()}</li>`;
+        }).join('');
+
+        return `
+            <div class="cntrol-strock">
+                <p class="otros-detalles"><strong>Stock:</strong> ${this.selectedPrdct.getStock()}</p>
+            </div>
+            <div class="method-paid">
+                <p class="otros-detalles"><strong>Metodos de Pago para este producto:</strong> ${this.selectedPrdct.getPaidMethod()}</p>
+            </div>
+            <span class="otros-detalles"> 
+                Lista de Precios:
+                <ul>
+                    ${preciosHTML}
+                </ul>
             </span>
+        `;
+    }
+
+    calcularPrecioFinal() {
+        const preciosHTML = this.productPrecio.map(pre => {
+            return `<p>${pre.getMoneda()}: ${pre.getMonto()}</p>`;
+        }).join('');
+
+        return ` 
+            <div id="precio-final-txt" class="precio-final">Precio Total:
+                ${preciosHTML}
+                <span id="text-recargo" style="display:none;font-size:0.6em;">(incluye recargo por envío)</span>
+            </div>
         `;
     }
 }

@@ -1,4 +1,5 @@
-export class User {
+export class Usuario {
+    // Constructor para manejo de un Usuario que espera 5 parametros
     constructor(username, name, surname, email, password) {
       this._username = username;
       this._name = name;

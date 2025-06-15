@@ -1,5 +1,5 @@
-import { User } from '../classes/user.js';
-import { Storage } from '../classes/storage.js';
+import { Usuario } from '../models/Usuario.js';
+import { Storage } from '../services/storage.js';
 
 export class AuthService {
   static register(username, name, surname, email, password) {
@@ -10,7 +10,7 @@ export class AuthService {
       throw new Error('El usuario ya existe');
     }
 
-    users.push(new User(username, name, surname, email, password));
+    users.push(new Usuario(username, name, surname, email, password));
 
     Storage.set('users', users);
   }

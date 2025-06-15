@@ -20,7 +20,7 @@
       "etiquetas": ["montaña", "aventura", "ciclismo"],
       "paidMethod": ["efectivo", "tarjeta"],
       "stock": 2,
-      "imagen": "../../../../resources/imgs/mountain_bike_1.jpg",
+      "imagen": "/resources/imgs/mountain_bike_1.jpg",
       "descripcion": "Bicicleta de montaña"
     },
     {
@@ -40,7 +40,7 @@
       "etiquetas": ["elite", "competencia", "carbono", "suspensión completa"],
       "paidMethod": ["tarjeta"],
       "stock": 0,
-      "imagen": "../../../../resources/imgs/mountain_bike_2.jpg",
+      "imagen": "/resources/imgs/mountain_bike_2.jpg",
       "descripcion": "Bicicleta de montaña de alta gama"
     }, 
     {
@@ -65,7 +65,7 @@
       ],
       "paidMethod": ["efectivo/debito"],
       "stock": 2,
-      "imagen": "../../../../resources/imgs/mountain_bike_2.jpg",
+      "imagen": "/resources/imgs/mountain_bike_2.jpg",
       "descripcion": "Bicicleton SR Suntour."
     },
     {
@@ -90,7 +90,7 @@
       ],
       "paidMethod": ["tarjeta"],
       "stock": 10,
-      "imagen": "../../../../resources/imgs/mountain_bike_1.jpg",
+      "imagen": "/resources/imgs/mountain_bike_1.jpg",
       "descripcion": "Bicicleton SR Suntour."
     },
     {
@@ -115,7 +115,7 @@
       ],
       "paidMethod": ["efectivo"],
       "stock": 10,
-      "imagen": "../../../../resources/imgs/mountain_bike_1.jpg",
+      "imagen": "/resources/imgs/mountain_bike_1.jpg",
       "descripcion": "Bicicleton SR Suntour."
     }
     ]
@@ -140,7 +140,7 @@
       "etiquetas": ["urbano", "competencia", "acrobacias"],
       "paidMethod": ["tarjeta"],
       "stock": 11,
-      "imagen": "../../../../Resources/imgs/bicicleta_bmx_1.jpg",
+      "imagen": "/Resources/imgs/bicicleta_bmx_1.jpg",
       "descripcion": "Bicicleta para BMX "
     },
     {
@@ -161,7 +161,7 @@
       "etiquetas": ["bicicleta de 29 pulgadas", "doble suspension", "montaña", "descenso (DH)"],
       "paidMethod": ["efectivo"],
       "stock": 2,
-      "imagen": "../../../../resources/imgs/bsotd.jpg",
+      "imagen": "/resources/imgs/bsotd.jpg",
       "descripcion": "Bicicleta para BMX"
     },
     {
@@ -183,7 +183,7 @@
       "etiquetas": ["bicicleta de 29 pulgadas", "doble suspension", "montaña", "descenso (DH)"],
       "paidMethod": ["tarjeta"],
       "stock": 5,
-      "imagen": "../../../../resources/imgs/bmx_blue_edition.jpg",
+      "imagen": "/resources/imgs/bmx_blue_edition.jpg",
       "descripcion": "Bicicleta para BMX premiun"
     },
     {
@@ -204,7 +204,7 @@
       "etiquetas": ["Universal", "doble suspension", "trans-especie"],
       "paidMethod": ["efectivo"],
       "stock": 1,
-      "imagen": "../../../../resources/imgs/bmx_blue_edition.jpg",
+      "imagen": "/resources/imgs/bmx_blue_edition.jpg",
       "descripcion": "Bicicleta para BMX premiun"
     },
     {
@@ -223,7 +223,7 @@
       "etiquetas": ["Universal", "doble suspension", "trans-especie"],
       "paidMethod": ["efectivo"],
       "stock": 1,
-      "imagen": "../../../../resources/imgs/bmx_hybrid.jpg",
+      "imagen": "/resources/imgs/bmx_hybrid.jpg",
       "descripcion": "Bicicleta para BMX premiun"
     }
     ]
@@ -247,7 +247,7 @@
       "etiquetas": ["urbano", "paseos"],
       "paidMethod": ["tarjeta"],
       "stock": 5,
-      "imagen": "../../../../Resources/imgs/bicicleta_bmx_1.jpg",
+      "imagen": "/Resources/imgs/bicicleta_bmx_1.jpg",
       "descripcion": "Bicicleta para anda en la ciudad"
     }
     ]

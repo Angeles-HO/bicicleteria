@@ -1,4 +1,4 @@
-import { Storage } from "../classes/storage.js";
+import { Storage } from "../services/storage.js";
 
 export class renderProd {
     constructor(containerId = 'productos-container') {
@@ -64,22 +64,6 @@ export class renderProd {
         this.container.appendChild(categoriaSection);
     }
 
-    // Better Currency to local
-    betterCTLstrg(value, moneda, producto) {
-        const srchRegion = producto.getRegion(moneda);
-        const srchCurrency = producto.getCurrency(srchRegion);
-        try { 
-          return Intl.NumberFormat(srchRegion, {
-          style: 'currency',
-          currency: srchCurrency,
-          minimumFractionDigits: 0
-        }).format(value);
-        } catch (error) {
-          console.warn(`Formato invalido para ${moneda} con ${srchRegion}`, error)
-          return value;
-        }
-    }
-
     // Genera los datos de cada producto
     genCardProdElemt(producto) {
         // Obtiene los precios en USD y ARS del producto
@@ -91,14 +75,17 @@ export class renderProd {
             moneda,
             precio: producto.getPrecio(moneda),
             descuento: producto?.getDescuento(moneda),
-            PcD: producto.getCalcularDescuento(moneda)
+            PcD: producto.getPrecioConDescuento(moneda)
         }));
+
+        const imgSrc = producto.getImgSrc();
+        
 
         return `
         <div class="producto-card" data-id="${producto.getId()}">
             <div class="producto-imagen-container">
                 ${producto.getStock() > 0 && producto.getStock() <= 3 ? '<p class="stock-badge">🔥¡ultimas unidades!</p>' : ''}
-                <img src="..${producto.getImgSrc()}" alt="${producto.getDescripcion()}" class="producto-imagen"
+                <img src="${imgSrc}" alt="${producto.getDescripcion()}" class="producto-imagen"
                 onerror="this.src='../../resources/imgs/bsotd.jpg'">
             </div>
             <div class="producto-info">
@@ -123,11 +110,27 @@ export class renderProd {
     getGenListPrec(details, prod) {
         return details.map(({moneda, precio, descuento, PcD}) => `
         <div class="lista-precio">
-            ${moneda}: ${precio === '' ? "" : this.betterCTLstrg(precio, moneda, prod)}
+            ${moneda}: ${precio === '' ? "" : `${this.betterCTLstrg(precio, moneda, prod)}`}
             <span class="descuento">${descuento === '' ? "" : "-" + descuento + "%"}</span>
             ${PcD === 0 ? "" : `<p class="p-final">- P. final: ${this.betterCTLstrg(PcD, moneda, prod)}</p>`}
         </div>
-        `).join("")
+        `).join("");
+    }
+
+    // Better Currency to local
+    betterCTLstrg(value, moneda, producto) {
+        const srchRegion = producto.getRegion(moneda);
+        const srchCurrency = producto.getCurrency(srchRegion);
+        try { 
+          return Intl.NumberFormat(srchRegion, {
+          style: 'currency',
+          currency: srchCurrency,
+          minimumFractionDigits: 0
+        }).format(value);
+        } catch (error) {
+          console.warn(`Formato invalido para ${moneda} con ${srchRegion}`, error)
+          return value;
+        }
     }
     
     getGenColorHTML(p) {
@@ -143,11 +146,12 @@ export class renderProd {
 
     getGenPaidMethod(p) {
         return `
-        <div class="metodos-pago">
-            ${p.getPaidMethod().map(m => `<span class="metodo-pago ${m}">${m}</span>`).join('')}
-        </div>
+            <div class="metodos-pago">
+                ${p.getPaidMethod().map(m => `<span class="metodo-pago ${m}">${m}</span>`).join('')}
+            </div>
         `;
     }
+
 
     getGenStockMethod(p) {
         return `

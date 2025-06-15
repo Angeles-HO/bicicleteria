@@ -1,5 +1,5 @@
-import { User } from "../js/classes/user.js"
-import { Storage } from "../js/classes/storage.js"
+import { Usuario } from "../classes/models/Usuario.js"
+import { Storage } from "../classes/services/storage.js"
 
 function thisEIV(correo) {
     // https://w3.unpocodetodo.info/utiles/regex-ejemplos.php?type=email
@@ -31,7 +31,7 @@ document.addEventListener('DOMContentLoaded', () => {
             return;
         }
 
-        const newUser = new User(username, firstname, lastname, email, password);
+        const newUser = new Usuario(username, firstname, lastname, email, password);
 
         Storage.set("regDATAform", newUser);
         

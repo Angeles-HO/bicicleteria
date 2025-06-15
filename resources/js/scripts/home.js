@@ -1,4 +1,4 @@
-import { Storage } from '../js/classes/storage.js';
+import { Storage } from '../classes/services/storage.js';
 
 document.addEventListener('DOMContentLoaded', () => {
     // Intentemos mejorar el apartado visual e interactivo en HOME y despues en otros *.js
@@ -51,7 +51,6 @@ document.addEventListener('DOMContentLoaded', () => {
         // Insertar el nombre del usuario y el enlace de logout en la navegacion
         navCntinr.insertBefore(unspan, carrito.nextSibling);
         navCntinr.insertBefore(logOL, unspan.nextSibling);
-        console.log(Storage.keys())
     } else {
         // Evento cuando el usuario no esta logeado
 
