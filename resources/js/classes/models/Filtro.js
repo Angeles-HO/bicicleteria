@@ -37,7 +37,6 @@ export class Filtro {
       // Devuelve la categoria solo si tiene productos despues de filtrar
       return prods.length ? { ...cat, productos: prods } : null;
       
-    })
-    .filter(Boolean); // Elimina categorias vacias o nulas
+    }).filter(Boolean); // Elimina categorias vacias o nulas
   }
 }

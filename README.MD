@@ -27,9 +27,9 @@
 - [x] Renderizado modular
 - [x] Filtros dinamicos
 - [x] Capacidad de register/login con logout y almacenar el usuario para iniciar sesion de vuelta
+- [x] Finalizar compra
 
 ### Contenido en desarrollo:
 - [ ] Carrito de compras
-- [ ] Finalizar compra (el envio de datos ya funciona; falta CSS y logica secundaria)
 - [ ] Edicion del perfil de usuario
-- [ ] Paginacion de productos (ej: mostrar solo 10 por pagina)
+- [ ] Paginacion de productos (ej: mostrar solo 10 productos por pagina)

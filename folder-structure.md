@@ -4,15 +4,15 @@
 bicicleteria
 ├── main/
 │   ├── comprar/
-│   │   └── comprar.html [970 bytes]
+│   │   └── comprar.html [1.15 KB]
 │   ├── home/
-│   │   └── index.html [3.30 KB]
+│   │   └── index.html [3.31 KB]
 │   ├── login/
-│   │   └── login.html [1.74 KB]
+│   │   └── login.html [1.75 KB]
 │   ├── register/
-│   │   └── register.html [2.29 KB]
+│   │   └── register.html [2.30 KB]
 │   └── store/
-│       └── store.html [2.63 KB]
+│       └── store.html [2.38 KB]
 ├── resources/
 │   ├── css/
 │   │   ├── comprar.css [4.95 KB]
@@ -21,7 +21,7 @@ bicicleteria
 │   │   ├── register.css [2.78 KB]
 │   │   └── tienda.css [8.43 KB]
 │   ├── data/
-│   │   └── bicicletas.json [10.30 KB]
+│   │   └── bicicletas.json [10.18 KB]
 │   ├── imgs/
 │   │   ├── background_1.jpg [784.46 KB]
 │   │   ├── bicicleta_bmx_1.jpg [80.01 KB]
@@ -35,31 +35,31 @@ bicicleteria
 │   └── js/
 │       ├── classes/
 │       │   ├── models/
-│       │   │   ├── Bicicleta.js [2.15 KB]
-│       │   │   ├── Envio.js [0 bytes]
-│       │   │   ├── Filtro.js [5.99 KB]
-│       │   │   ├── Pago.js [0 bytes]
-│       │   │   ├── Precio.js [0 bytes]
-│       │   │   ├── Usuario.js [540 bytes]
-│       │   │   └── comprar.js [2.21 KB]
+│       │   │   ├── Bicicleta.js [2.87 KB]
+│       │   │   ├── Compra.js [1.45 KB]
+│       │   │   ├── Envio.js [617 bytes]
+│       │   │   ├── Filtro.js [1.51 KB]
+│       │   │   ├── Pago.js [897 bytes]
+│       │   │   ├── Precio.js [834 bytes]
+│       │   │   └── Usuario.js [610 bytes]
 │       │   ├── services/
-│       │   │   ├── AuthenticateService.js [837 bytes]
-│       │   │   ├── ProductService.js [2.17 KB]
+│       │   │   ├── AuthenticateService.js [854 bytes]
+│       │   │   ├── ProductService.js [1.99 KB]
 │       │   │   └── storage.js [2.25 KB]
 │       │   └── ui/
-│       │       ├── DOMhandler.js [1.99 KB]
-│       │       ├── rendererForm.js [7.85 KB]
-│       │       └── rendererProducts.js [6.76 KB]
+│       │       ├── FiltroUI.js [3.41 KB]
+│       │       ├── rendererForm.js [8.26 KB]
+│       │       └── rendererProducts.js [6.82 KB]
 │       └── scripts/
-│           ├── finalizarCompra.js [0 bytes]
-│           ├── home.js [3.38 KB]
-│           ├── login.js [1.48 KB]
-│           ├── register.js [1.56 KB]
-│           └── tienda.js [2.18 KB]
+│           ├── finalizarCompra.js [3.69 KB]
+│           ├── home.js [3.35 KB]
+│           ├── login.js [1.49 KB]
+│           ├── register.js [1.57 KB]
+│           └── tienda.js [1.17 KB]
 ├── server/
 │   └── api.js [812 bytes]
 ├── README.MD [1.65 KB]
-├── folder-structure.md [2.75 KB]
+├── folder-structure.md [2.95 KB]
 ├── package-lock.json [28.29 KB]
 └── package.json [694 bytes]
 ```
@@ -85,8 +85,8 @@ File Types:
   - .jpg Files: 7
   - .png Files: 2
 Largest File: carrito_compras.png [1.28 MB]
-Smallest File: Envio.js [0 bytes]
-Total Project Size: 4.49 MB
+Smallest File: abs.d.ts [18 bytes]
+Total Project Size: 4.50 MB
 Ignored Files and Folders:
   - None
 ```
